@@ -2,27 +2,57 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="492.185" Width="468.749" Background="{x:Null}" Foreground="{x:Null}" MouseLeftButtonDown="Window_CheckMouseLeftButtonState" MouseLeftButtonUp="Window_CheckMouseLeftButtonState" MouseEnter="Window_CheckMouseLeftButtonState">
-    <Grid x:Name="Board" Height="462" VerticalAlignment="Top" HorizontalAlignment="Left" Width="458">
-        <Grid.Background>
-            <ImageBrush ImageSource="WordamentBackground.PNG"/>
-        </Grid.Background>
-        <Rectangle x:Name="rect1" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect2" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="123,10,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect3" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="236,10,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect4" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="349,10,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect5" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="10,123,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect6" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="123,123,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect7" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="236,123,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect8" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="349,123,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect9" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="10,236,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect10" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="123,236,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect11" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="236,236,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="30" RadiusY="30"/>
-        <Rectangle x:Name="rect12" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="349,236,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect13" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="10,349,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect14" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="123,349,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Rectangle x:Name="rect15" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="236,349,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="30" RadiusY="30"/>
-        <Rectangle x:Name="rect16" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="349,349,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter"/>
-        <Ellipse Fill="#FF00FF74" HorizontalAlignment="Left" Height="100" Margin="349,123,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100"/>
-        <Ellipse Fill="#FF00FF74" HorizontalAlignment="Left" Height="100" Margin="348,236,0,0" Stroke="DarkOrange" VerticalAlignment="Top" Width="100"/>
-    </Grid>
+  <Grid x:Name="Board" Height="462" VerticalAlignment="Top" HorizontalAlignment="Left" Width="458">
+    <Grid.Background>
+      <ImageBrush ImageSource="WordamentBackground.PNG"/>
+    </Grid.Background>
+    <Border x:Name="border1" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect1" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border2" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect2" Fill="DarkOrange" HorizontalAlignment="Left" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border3" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect3" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border4" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="348,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect4" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border5" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,123,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect5" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border6" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,123,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect6" Fill="DarkOrange" Margin="-1" Stroke="DarkOrange" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border7" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,123,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect7" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border8" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,123,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect8" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border9" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,236,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect9" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border10" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,236,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect10" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border11" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,236,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect11" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border12" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,236,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect12" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border13" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,349,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect13" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border14" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,349,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect14" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border15" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,349,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect15" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+    <Border x:Name="border16" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,349,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange">
+      <Rectangle x:Name="rect16" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseLeftButtonDown="Rectangle_MouseLeftButtonDown" MouseEnter="Rectangle_MouseEnter" RadiusX="40" RadiusY="40"/>
+    </Border>
+  </Grid>
 </Window>
