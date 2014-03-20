@@ -15,7 +15,7 @@
     <Border x:Name="border3" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange" MouseLeftButtonDown="Border_MouseLeftButtonDown">
       <Rectangle x:Name="rect3" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseEnter="Rectangle_MouseEnter" RadiusX="50" RadiusY="50"/>
     </Border>
-    <Border x:Name="border4" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="348,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border x:Name="border4" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,10,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange" MouseLeftButtonDown="Border_MouseLeftButtonDown">
       <Rectangle x:Name="rect4" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseEnter="Rectangle_MouseEnter" RadiusX="50" RadiusY="50"/>
     </Border>
     <Border x:Name="border5" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,123,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange" MouseLeftButtonDown="Border_MouseLeftButtonDown">
@@ -54,7 +54,21 @@
     <Border x:Name="border16" BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,349,0,0" VerticalAlignment="Top" Width="100" Background="DarkOrange" MouseLeftButtonDown="Border_MouseLeftButtonDown">
       <Rectangle x:Name="rect16" Fill="DarkOrange" Height="100" Margin="-1" Stroke="DarkOrange" VerticalAlignment="Top" MouseEnter="Rectangle_MouseEnter" RadiusX="50" RadiusY="50"/>
     </Border>
-    <Label Content="A" HorizontalAlignment="Left" Margin="372,239,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72"/>
-    <Label Content="G" HorizontalAlignment="Left" Margin="27,12,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Helvetica Neue LT Std" IsEnabled="False"/>
+    <Label Content="A" HorizontalAlignment="Left" Margin="33,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="E" HorizontalAlignment="Left" Margin="33,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="B" HorizontalAlignment="Left" Margin="146,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="C" HorizontalAlignment="Left" Margin="259,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="D" HorizontalAlignment="Left" Margin="372,17,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="F" HorizontalAlignment="Left" Margin="146,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="G" HorizontalAlignment="Left" Margin="259,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="H" HorizontalAlignment="Left" Margin="372,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="I" HorizontalAlignment="Left" Margin="33,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="M" HorizontalAlignment="Left" Margin="33,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="J" HorizontalAlignment="Left" Margin="146,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="K" HorizontalAlignment="Left" Margin="259,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="L" HorizontalAlignment="Left" Margin="372,244,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="N" HorizontalAlignment="Left" Margin="146,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="O" HorizontalAlignment="Left" Margin="259,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
+    <Label Content="P" HorizontalAlignment="Left" Margin="372,357,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.278,0.435" Foreground="White" FontSize="72" FontFamily="Liberation Mono" IsEnabled="False" IsHitTestVisible="False"/>
   </Grid>
 </Window>
