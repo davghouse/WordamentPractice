@@ -38,11 +38,14 @@ namespace WordamentWPF2
       }
       if (!mouseLeftButtonPressed)
       {
-        foreach (var r in Board.Children)
+        foreach (var c in Board.Children)
         {
-          if (r.GetType() == typeof(Rectangle))
+          if (c.GetType() == typeof(Border))
           {
-            Rectangle rect = (Rectangle)r;
+            Border bord = (Border)c;
+            Rectangle rect = (Rectangle)((Border)c).Child;
+            bord.Background = new SolidColorBrush(Colors.DarkOrange);
+            bord.BorderBrush = new SolidColorBrush(Colors.DarkOrange);
             rect.Fill = new SolidColorBrush(Colors.DarkOrange);
             rect.Stroke = new SolidColorBrush(Colors.DarkOrange);
           }
@@ -50,14 +53,18 @@ namespace WordamentWPF2
       }
     }
 
-    private void Rectangle_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      foreach (Rectangle r in Board.Children)
+      foreach (var c in Board.Children)
       {
-        if (((Rectangle)sender).Name == r.Name)
+        if (c.GetType() == typeof(Border) && ((Border)c).Name == ((Border)sender).Name)
         {
-          r.Fill = new SolidColorBrush(Colors.LightGreen);
-          r.Stroke = new SolidColorBrush(Colors.LightGreen);
+          Border bord = (Border)c;
+          Rectangle rect = (Rectangle)((Border)c).Child;
+          bord.Background = new SolidColorBrush(Colors.LightGreen);
+          bord.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+          rect.Fill = new SolidColorBrush(Colors.LightGreen);
+          rect.Stroke = new SolidColorBrush(Colors.LightGreen);
           return;
         }
       }
@@ -67,11 +74,14 @@ namespace WordamentWPF2
     {
       if (mouseLeftButtonPressed)
       {
-        Rectangle rect = (Rectangle)sender;
-        foreach (Rectangle r in Board.Children)
+        foreach (var c in Board.Children)
         {
-          if (rect.Name == r.Name)
+          if (c.GetType() == typeof(Border) && ((Rectangle)((Border)c).Child).Name == ((Rectangle)sender).Name)
           {
+            Border bord = (Border)c;
+            Rectangle rect = (Rectangle)((Border)c).Child;
+            bord.Background = new SolidColorBrush(Colors.LightGreen);
+            bord.BorderBrush = new SolidColorBrush(Colors.LightGreen);
             rect.Fill = new SolidColorBrush(Colors.LightGreen);
             rect.Stroke = new SolidColorBrush(Colors.LightGreen);
             return;
