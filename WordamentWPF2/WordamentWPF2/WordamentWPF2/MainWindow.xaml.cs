@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace WordamentWPF2
 {
@@ -22,6 +23,7 @@ namespace WordamentWPF2
   {
     public MainWindow()
     {
+
       InitializeComponent();
     }
 
@@ -40,57 +42,92 @@ namespace WordamentWPF2
       {
         foreach (var c in Board.Children)
         {
-          if (c.GetType() == typeof(Border))
+          if (c.GetType() == typeof(Border) && ((Border)c).Child.GetType() == typeof(Border))
           {
-            Border bord = (Border)c;
-            Rectangle rect = (Rectangle)((Border)c).Child;
-            bord.Background = new SolidColorBrush(Colors.DarkOrange);
-            bord.BorderBrush = new SolidColorBrush(Colors.DarkOrange);
-            rect.Fill = new SolidColorBrush(Colors.DarkOrange);
-            rect.Stroke = new SolidColorBrush(Colors.DarkOrange);
+            Border parentBorder = (Border)c;
+            Border childBorder = (Border)((Border)c).Child;
+            parentBorder.Background = new SolidColorBrush(Colors.DarkOrange);
+            parentBorder.BorderBrush = new SolidColorBrush(Colors.DarkOrange);
+            childBorder.Background = new SolidColorBrush(Colors.DarkOrange);
+            childBorder.BorderBrush = new SolidColorBrush(Colors.DarkOrange);
           }
         }
       }
     }
 
-    private void Border_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+    private void ParentBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
-      foreach (var c in Board.Children)
-      {
-        if (c.GetType() == typeof(Border) && ((Border)c).Name == ((Border)sender).Name)
-        {
-          Border bord = (Border)c;
-          Rectangle rect = (Rectangle)((Border)c).Child;
-          bord.Background = new SolidColorBrush(Colors.LightGreen);
-          bord.BorderBrush = new SolidColorBrush(Colors.LightGreen);
-          rect.Fill = new SolidColorBrush(Colors.LightGreen);
-          rect.Stroke = new SolidColorBrush(Colors.LightGreen);
-          return;
-        }
-      }
+      Border parentBorder = (Border)sender;
+      Border childBorder = (Border)parentBorder.Child;
+      parentBorder.Background = new SolidColorBrush(Colors.LightGreen);
+      parentBorder.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+      childBorder.Background = new SolidColorBrush(Colors.LightGreen);
+      childBorder.BorderBrush = new SolidColorBrush(Colors.LightGreen);
     }
 
-    private void Rectangle_MouseEnter(object sender, MouseEventArgs e)
+    private void ChildBorder_MouseEnter(object sender, MouseEventArgs e)
     {
       if (mouseLeftButtonPressed)
       {
-        foreach (var c in Board.Children)
+
+        Border childBorder = (Border)sender;
+        Border parentBorder = (Border)childBorder.Parent;
+        parentBorder.Background = new SolidColorBrush(Colors.LightGreen);
+        parentBorder.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+        childBorder.Background = new SolidColorBrush(Colors.LightGreen);
+        childBorder.BorderBrush = new SolidColorBrush(Colors.LightGreen);
+      }
+    }
+
+    // This is bad, but will hopefully work (display all text) AND look decent (not too small) almost all the time.
+    // I tried to work with widths briefly but didn't get anywhere useful.
+    private void textbox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      TextBox temp = (TextBox)sender;
+
+      if (temp.Text.Count() >= 5)
+      {
+        temp.FontSize = 24;
+      }
+      else if (temp.Text.Count() >= 4)
+      {
+        temp.FontSize = 36;
+      }
+      else if (temp.Text.Count() >= 3)
+      {
+        temp.FontSize = 48;
+      }
+      else if (temp.Text.Count() >= 2)
+      {
+        temp.FontSize = 48;
+      }
+      else
+      {
+        temp.FontSize = 72;
+      }
+    }
+
+    private void startButton_Click(object sender, RoutedEventArgs e)
+    {
+      // Make textboxes' isHitTestVisible false, so the game can be played.
+      foreach (var c in Board.Children)
+      {
+        if (c.GetType() == typeof(TextBox))
         {
-          if (c.GetType() == typeof(Border) && ((Rectangle)((Border)c).Child).Name == ((Rectangle)sender).Name)
-          {
-            Border bord = (Border)c;
-            Rectangle rect = (Rectangle)((Border)c).Child;
-            bord.Background = new SolidColorBrush(Colors.LightGreen);
-            bord.BorderBrush = new SolidColorBrush(Colors.LightGreen);
-            rect.Fill = new SolidColorBrush(Colors.LightGreen);
-            rect.Stroke = new SolidColorBrush(Colors.LightGreen);
-            return;
-          }
+          TextBox temp = (TextBox)c;
+          temp.IsHitTestVisible = false;
+        }
+        if (c.GetType() == typeof(Border))
+        {
+          TextBox temp = (TextBox)((Border)((Border)c).Child).Child;
+          temp.IsHitTestVisible = false;
         }
       }
     }
 
+    #region Fields
     private bool mouseLeftButtonPressed = false;
-
+    #endregion
   }
 }
+
