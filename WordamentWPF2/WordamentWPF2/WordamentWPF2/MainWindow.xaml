@@ -8,83 +8,83 @@
       <ImageBrush ImageSource="WordamentBackground.PNG"/>
     </Grid.Background>
 
-    <Border x:Name="border1p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border1c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder1"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder1" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox1" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="1" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border2p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border2c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder2"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder2" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox2" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="2" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border3p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border3c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder3"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder3" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="3" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border4p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border4c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder4"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder4" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox4" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="4" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border5p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border5c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder5"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder5" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox5" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="5" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border6p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border6c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder6"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder6" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox6" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="6" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border7p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border7c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder7"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder7" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox7" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="7" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border8p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border8c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder8"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder8" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox8" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="8" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border9p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border9c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder9"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder9" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox9" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="9" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border10p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border10c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder10"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder10" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox10" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="10" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border11p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border11c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder11"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder11" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox11" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="11" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border12p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border12c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder12"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder12" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox12" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="12" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border13p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border13c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder13"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder13" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox13" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="14" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border14p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border14c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder14"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder14" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox14" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="14" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border15p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border15c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+    <Border x:Name="pborder15"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder15" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
         <TextBox x:Name="textbox15" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="15" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
-    <Border x:Name="border16p"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-      <Border x:Name="border16c" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange" Margin="-1,0,1,0">
+    <Border x:Name="pborder16"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder16" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange" Margin="-1,0,1,0">
         <TextBox x:Name="textbox16" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="16" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
       </Border>
     </Border>
