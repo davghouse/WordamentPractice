@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WordamentWPF2
+namespace WordamentWPF3
 {
   /// <summary>
   /// Interaction logic for App.xaml

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WordamentWPF2.Properties
+namespace WordamentWPF3.Properties
 {
 
 
