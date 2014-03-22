@@ -16,18 +16,7 @@ using System.IO;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
 
-          /*
-          ColorAnimation animation = new ColorAnimation();
-          animation.To = Colors.White;
-          animation.Duration = new Duration(TimeSpan.FromSeconds(.001));
-          parentBorder.BorderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-          parentBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-          childBorder.BorderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-          childBorder.Background.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-          animation.To = Colors.Black;
-          TextBox textBox = (TextBox)(childBorder.Child);
-          textBox.Foreground.BeginAnimation(SolidColorBrush.ColorProperty, animation);
-          */
+         
 
 namespace WordamentWPF2
 {
@@ -55,13 +44,10 @@ namespace WordamentWPF2
       {
         mouseLeftButtonPressed = false;
       }
-      if (!mouseLeftButtonPressed)
+      if (!mouseLeftButtonPressed && started)
       {
+        
         CheckPathForWord(currentPath);
-        for (int i = 0; i < currentPath.Count(); ++i)
-        {
-          UncolorTile(currentPath[i]);
-        }
         currentPath.Clear();
       }
     }
@@ -97,6 +83,7 @@ namespace WordamentWPF2
         }
       }
       bool found = false;
+      bool alreadyFound = false;
       string string1 = builder1.ToString();
       string string2 = builder2.ToString();
       for (int i = 0; i < solutionWordPointPaths.Count(); ++i)
@@ -108,10 +95,14 @@ namespace WordamentWPF2
             foundWordPointPaths.Add(solutionWordPointPaths[i]);
             found = true;
           }
+          else
+          {
+            alreadyFound = true;
+          }
           break;
         }
       }
-      // Either/or tile was chosen; guaranteed that only one word results from a path through an either or tile.
+      // Either/or tile was chosen.
       if (string1 != string2 && !found)
       {
         for (int i = 0; i < solutionWordPointPaths.Count(); ++i)
@@ -123,24 +114,69 @@ namespace WordamentWPF2
               foundWordPointPaths.Add(solutionWordPointPaths[i]);
               found = true;
             }
+            else
+            {
+              alreadyFound = true;
+            }
             break;
           }
         }
       }
+      if (string1.Count() < 3)
+      {
+        for (int i = 0; i < currentPath.Count(); i++)
+        {
+          UncolorTile(currentPath[i]);
+        }
+        return;
+      }
       if (found)
       {
+        AnimateWordSubmission(path, Colors.Green);
         foundPoints += foundWordPointPaths[foundWordPointPaths.Count() - 1].points;
         pointsLabel.Content = foundPoints + " of " + totalPoints + " points";
         wordsLabel.Content = foundWordPointPaths.Count() + " of " + solutionWordPointPaths.Count() + " words";
         SortWordPointPaths(foundWordPointPaths);
         Display(foundBox, foundWordPointPaths);
       }
+      else if (alreadyFound)
+      {
+        AnimateWordSubmission(path, Colors.Goldenrod);
+      }
+      else
+      {
+        AnimateWordSubmission(path, Colors.Red);
+      }
+    }
+
+    private void AnimateWordSubmission(List<Border> path, Color color)
+    {
+        SolidColorBrush borderBrush = new SolidColorBrush(color);
+        SolidColorBrush textBrush = new SolidColorBrush(Colors.White);
+        for (int i = 0; i < path.Count(); ++i)
+        {
+          // Color it Green.
+          //SolidColorBrush brush = new SolidColorBrush(Colors.Green);
+          Border childBorder = (Border)path[i].Child;
+          path[i].Background = path[i].BorderBrush = childBorder.Background = childBorder.BorderBrush = borderBrush;
+          //borderBrush = new SolidColorBrush(Colors.White);
+          TextBox letterTextBox = (TextBox)(childBorder.Child);
+          letterTextBox.Foreground = textBrush;
+          TextBox pointTextBox = this.FindName("point" + letterTextBox.Name.Substring(7)) as TextBox;
+          pointTextBox.Foreground = textBrush;
+        }
+        // Animate back (all at once -- they're sharing references to SolidColorBrush) to DarkOrange.
+        ColorAnimation animation = new ColorAnimation();
+        animation.To = Colors.DarkOrange;
+        animation.AccelerationRatio = .99;
+        animation.Duration = new Duration(TimeSpan.FromSeconds(1.2));
+        borderBrush.BeginAnimation(SolidColorBrush.ColorProperty, animation);
     }
 
     private void ParentBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
       Border parentBorder = (Border)sender;
-      if (currentPath.Count() == 0)
+      if ((currentPath.Count() == 0) && started)
       {
         currentPath.Add(parentBorder);
         ColorTile(parentBorder);
@@ -149,14 +185,33 @@ namespace WordamentWPF2
 
     private void ChildBorder_MouseEnter(object sender, MouseEventArgs e)
     {
-      if (mouseLeftButtonPressed && !textbox1.IsHitTestVisible)
+      if (mouseLeftButtonPressed && !textbox1.IsHitTestVisible && started)
       {
         bool color = false;
         Border parentBorder = (Border)((Border)sender).Parent;
+        if ((currentPath.Count() > 1) && currentPath[currentPath.Count() - 2] == parentBorder)
+        {
+          UncolorTile(currentPath[currentPath.Count() - 1]);
+          currentPath.RemoveAt(currentPath.Count() - 1);
+          return;
+        }
+        // Checking for prefix and suffix tiles.
+        if ((currentPath.Count() != 0))
+        {
+          string text = ((TextBox)((Border)parentBorder.Child).Child).Text;
+          if (text[text.Count() - 1] == '-')
+          {
+            return;
+          }
+          if (((TextBox)(((Border)currentPath[currentPath.Count() - 1].Child).Child)).Text[0] == '-')
+          {
+            return;
+          }
+        }
         if (currentPath.Count() == 0)
         {
           color = true;
-        }
+        } 
         else if (!currentPath.Contains(parentBorder))
         {
           // The tile isn't first, and isn't already taken; check if it is adjacent to the previous tile in the path.
@@ -166,11 +221,6 @@ namespace WordamentWPF2
           {
             color = true;
           }
-        }
-        else if((currentPath.Count() > 1) && currentPath[currentPath.Count() - 2] == parentBorder)
-        {
-          UncolorTile(currentPath[currentPath.Count() - 1]);
-          currentPath.RemoveAt(currentPath.Count() - 1);
         }
         if (color)
         {
@@ -251,6 +301,7 @@ namespace WordamentWPF2
 
     private void startButton_Click(object sender, RoutedEventArgs e)
     {
+      started = true;
       for (int i = 0; i < currentPath.Count(); ++i)
       {
         UncolorTile(currentPath[i]);
@@ -758,6 +809,7 @@ namespace WordamentWPF2
 
     private void clearButton_Click(object sender, RoutedEventArgs e)
     {
+      started = false;
       timer.Stop();
       seconds = 0;
       timerLabel.Content = "0:00";
@@ -830,6 +882,7 @@ namespace WordamentWPF2
 
     #region Fields
 
+    private bool started = false;
     private bool mouseLeftButtonPressed = false;
     private const int dim = 4;
     private static Dictionary<char, int> basicTileValues = new Dictionary<char, int>
