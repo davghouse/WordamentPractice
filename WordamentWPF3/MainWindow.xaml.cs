@@ -640,6 +640,7 @@ namespace WordamentWPF2
       {
         if (word == wordPointPaths[i].word)
         {
+          currentWordLabel.Content = word;
           List<int> path = wordPointPaths[i].path;
           List<Color> colorGradient = CreateColorGradient(Colors.LightGreen, Colors.Tomato, path.Count());
           for (int j = 0; j < path.Count(); ++j)
@@ -690,6 +691,7 @@ namespace WordamentWPF2
 
     private void listBox_MouseLeave(object sender, MouseEventArgs e)
     {
+      currentWordLabel.Content = "";
       if (justSelectedListBox)
       {
         foreach (var c in Board.Children)

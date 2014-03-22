@@ -131,7 +131,8 @@
         <Label x:Name="pointsLabel" Content="" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
         <Label x:Name="wordsLabel" Content="" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.056,0.522" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
         <ListBox x:Name="foundBox" HorizontalAlignment="Left" Height="482" Margin="462,68,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" SelectionChanged="listBox_SelectionChanged" MouseLeave="listBox_MouseLeave"/>
-    
+    <Label x:Name="currentWordLabel" Content="" HorizontalAlignment="Left" Margin="148,37,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="16" Foreground="White" RenderTransformOrigin="0.154,0.375"/>
+
   </Grid>
 </Window>
 
