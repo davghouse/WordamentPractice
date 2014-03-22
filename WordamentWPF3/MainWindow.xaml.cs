@@ -180,7 +180,7 @@ namespace WordamentWPF2
       if ((currentPath.Count() == 0) && started)
       {
         currentPath.Add(parentBorder);
-        ColorTile(parentBorder);
+        ColorTile(parentBorder, new SolidColorBrush(Colors.White));
       }
     }
 
@@ -226,15 +226,14 @@ namespace WordamentWPF2
         if (color)
         {
           currentPath.Add(parentBorder);
-          ColorTile(parentBorder);
+          ColorTile(parentBorder, new SolidColorBrush(Colors.White));
         }
       }
     }
 
-    private void ColorTile(Border parentBorder)
+    private void ColorTile(Border parentBorder, SolidColorBrush brush)
     {
       Border childBorder = (Border)parentBorder.Child;
-      SolidColorBrush brush = new SolidColorBrush(Colors.White);
       parentBorder.Background = parentBorder.BorderBrush = childBorder.Background = childBorder.BorderBrush = brush;
       brush = new SolidColorBrush(Colors.Black);
       TextBox letterTextBox = (TextBox)(childBorder.Child);
@@ -612,8 +611,9 @@ namespace WordamentWPF2
       }
     }
 
-    private void foundBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+      ListBox box = (ListBox)sender;
       foreach (var c in Board.Children)
       {
         if (c.GetType() == typeof(Border))
@@ -621,21 +621,42 @@ namespace WordamentWPF2
           UncolorTile((Border)c);
         }
       }
-      int selectedIndex = foundBox.SelectedIndex;
-      if (selectedIndex == -1 || foundBox.Items[selectedIndex].ToString().Count() == 0)
+      int selectedIndex = box.SelectedIndex;
+      if (selectedIndex == -1 || box.Items[selectedIndex].ToString().Count() == 0)
       {
         return;
       }
-      string word = (foundBox.Items[foundBox.SelectedIndex].ToString().Split(' '))[1].ToUpper();
-      for (int i = 0; i < foundWordPointPaths.Count(); ++i)
+      List<WordPointPath> wordPointPaths;
+      if (box.Name == foundBox.Name)
       {
-        if (word == foundWordPointPaths[i].word)
+        wordPointPaths = foundWordPointPaths;
+      }
+      else
+      {
+        wordPointPaths = solutionWordPointPaths;
+      }
+      string word = (box.Items[box.SelectedIndex].ToString().Split(' '))[1].ToUpper();
+      for (int i = 0; i < wordPointPaths.Count(); ++i)
+      {
+        if (word == wordPointPaths[i].word)
         {
-          List<int> path = foundWordPointPaths[i].path;
+          List<int> path = wordPointPaths[i].path;
+          List<Color> colorGradient = CreateColorGradient(Colors.LightGreen, Colors.Tomato, path.Count());
           for (int j = 0; j < path.Count(); ++j)
           {
             Border pborder = this.FindName("pborder" + (path[j] + 1)) as Border;
-            ColorTile(pborder);
+            SolidColorBrush brush = new SolidColorBrush(colorGradient[j]);
+            ColorTile(pborder, brush);
+          }
+          for (int j = 0; j < 16; ++j)
+          {
+            if (!path.Contains(j))
+            {
+              Border pborder = this.FindName("pborder" + (j + 1)) as Border;
+              SolidColorBrush brush = new SolidColorBrush(Colors.White);
+              brush.Opacity = 0;
+              ColorTile(pborder, brush);
+            }
           }
           break;
         }
@@ -643,7 +664,31 @@ namespace WordamentWPF2
       justSelectedListBox = true;
     }
 
-    private void foundBox_MouseLeave(object sender, MouseEventArgs e)
+    private List<Color> CreateColorGradient(Color a, Color b, int steps)
+    {
+      int rMax = a.R;
+      int rMin = b.R;
+      int gMax = a.G;
+      int gMin = b.G;
+      int bMax = a.B;
+      int bMin = b.B;
+      List<Color> colorGradient = new List<Color>();
+      int denominator = steps - 1;
+      if (denominator == 0)
+      {
+        denominator = 1;
+      }
+      for (int i = 0; i < steps; ++i)
+      {
+        int rAverage = rMin + (int)((rMax - rMin) * i / (denominator));
+        int gAverage = gMin + (int)((gMax - gMin) * i / (denominator));
+        int bAverage = bMin + (int)((bMax - bMin) * i / (denominator));
+        colorGradient.Add(Color.FromArgb(255, (byte)rAverage, (byte)gAverage, (byte)bAverage));
+      }
+      return colorGradient;
+    }
+
+    private void listBox_MouseLeave(object sender, MouseEventArgs e)
     {
       if (justSelectedListBox)
       {
@@ -654,8 +699,21 @@ namespace WordamentWPF2
             UncolorTile((Border)c);
           }
         }
-        foundBox.SelectedIndex = -1;
+        ((ListBox)sender).SelectedIndex = -1;
         justSelectedListBox = false;
+      }
+    }
+
+    private void button_MouseLeave(object sender, MouseEventArgs e)
+    {
+      if (Mouse.LeftButton != MouseButtonState.Pressed)
+      {
+        if (started && currentPath.Count() != 0)
+        {
+          mouseLeftButtonPressed = false;
+          CheckPathForWord(currentPath);
+          currentPath.Clear();
+        }
       }
     }
 
@@ -958,18 +1016,5 @@ namespace WordamentWPF2
     private bool justSelectedListBox = false;
 
     #endregion
-
-    private void Button_MouseLeave(object sender, MouseEventArgs e)
-    {
-      if (Mouse.LeftButton != MouseButtonState.Pressed)
-      {
-        if (started && currentPath.Count() != 0)
-        {
-          mouseLeftButtonPressed = false;
-          CheckPathForWord(currentPath);
-          currentPath.Clear();
-        }
-      }
-    }
   }
 }
