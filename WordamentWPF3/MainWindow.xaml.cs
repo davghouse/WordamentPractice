@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.IO;
 using System.Windows.Threading;
 using System.Windows.Media.Animation;
+using System.Timers;
 
          
 
@@ -141,7 +142,7 @@ namespace WordamentWPF2
       }
       else if (alreadyFound)
       {
-        AnimateWordSubmission(path, Colors.Goldenrod);
+        AnimateWordSubmission(path, Color.FromArgb(255, 205, 189, 31));
       }
       else
       {
@@ -458,6 +459,219 @@ namespace WordamentWPF2
       }
     }
 
+    private void ComputePoints(List<List<string>> words, List<List<List<int>>> paths, List<List<int>> points)
+    {
+      int[] pointsBoard = new int[dim * dim];
+      for (int i = 1; i <= dim * dim; ++i)
+      {
+        pointsBoard[i - 1] = Convert.ToInt32((this.FindName("point" + i.ToString()) as TextBox).Text);
+      }
+      for (int i = 0; i < words.Count(); ++i)
+      {
+        points.Add(new List<int>());
+        for (int j = 0; j < words[i].Count(); ++j)
+        {
+          points[i].Add(ComputePointsHelper(words[i][j].Count(), paths[i][j], pointsBoard));
+        }
+      }
+    }
+
+    private int ComputePointsHelper(int wordLength, List<int> path, int[] pointsBoard)
+    {
+      int ret = 0;
+      for (int i = 0; i < path.Count(); ++i)
+      {
+        ret += pointsBoard[path[i]];
+      }
+      if (wordLength >= 8)
+      {
+        return (int)(2.5 * ret);
+      }
+      if (wordLength >= 6)
+      {
+        return 2 * ret;
+      }
+      if (wordLength >= 5)
+      {
+        return (int)(1.5 * ret);
+      }
+      return ret;
+    }
+
+    private void Display(ListBox box, List<WordPointPath> wordPointPaths)
+    {
+      box.Items.Clear();
+      for (int i = 0; i < wordPointPaths.Count(); ++i)
+      {
+        box.Items.Add(wordPointPaths[i].points + " " + wordPointPaths[i].word.ToLower());
+      }
+    }
+
+
+    private void timer_Elapsed(object sender, EventArgs e)
+    {
+      seconds++;
+      TimeSpan temp = TimeSpan.FromSeconds(seconds);
+      if (temp.TotalMinutes < 10)
+      {
+        timerLabel.Content = temp.ToString().Substring(4);
+      }
+      else if (temp.TotalHours < 1)
+      {
+        timerLabel.Content = temp.ToString().Substring(3);
+      }
+      else
+      {
+        timerLabel.Content = temp.ToString().Substring(1);
+      }
+    }
+
+    private void pauseButton_Click(object sender, RoutedEventArgs e)
+    {
+      for (int i = 0; i < currentPath.Count(); ++i)
+      {
+        UncolorTile(currentPath[i]);
+      }
+      currentPath.Clear();
+      mouseLeftButtonPressed = false;
+      if ((string)pauseButton.Content == "Pause")
+      {
+        if (timer.IsEnabled)
+        {
+          timer.Stop();
+          pauseButton.Content = "Unpause";
+        }
+      }
+      else if ((string)pauseButton.Content == "Unpause")
+      {
+        if (!timer.IsEnabled)
+        {
+          timer.Start();
+          pauseButton.Content = "Pause";
+        }
+      }
+    }
+
+    private void clearButton_Click(object sender, RoutedEventArgs e)
+    {
+      started = false;
+      timer.Stop();
+      seconds = 0;
+      timerLabel.Content = "0:00";
+      pauseButton.Content = "Pause";
+      words.Clear();
+      solutionWordPointPaths.Clear();
+      foundWordPointPaths.Clear();
+      points.Clear();
+      paths.Clear();
+      totalPoints = 0;
+      foundPoints = 0;
+      pointsLabel.Content = "";
+      wordsLabel.Content = "";
+      foundBox.Items.Clear();
+      solutionBox.Items.Clear();
+      foreach (var c in Board.Children)
+      {
+        if (c.GetType() == typeof(Border))
+        {
+          UncolorTile((Border)c);
+          TextBox letterTextBox = (TextBox)((Border)((Border)c).Child).Child;
+          letterTextBox.IsHitTestVisible = true;
+          letterTextBox.Text = "";
+        }
+        if (c.GetType() == typeof(TextBox))
+        {
+          TextBox pointTextBox = (TextBox)c;
+          pointTextBox.IsHitTestVisible = true;
+          pointTextBox.Text = "";
+        }
+      }
+    }
+
+    private void comboBox1_DropDownOpened(object sender, EventArgs e)
+    {
+      comboBox1.Foreground = new SolidColorBrush(Colors.Black);
+    }
+
+    private void comboBox1_DropDownClosed(object sender, EventArgs e)
+    {
+      comboBox1.Foreground = new SolidColorBrush(Colors.White);
+    }
+
+    private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      SortWordPointPaths(solutionWordPointPaths);
+      SortWordPointPaths(foundWordPointPaths);
+      if (foundBox.Items.Count != 0)
+      {
+        Display(foundBox, foundWordPointPaths);
+      }
+      if (solutionBox.Items.Count != 0)
+      {
+        Display(solutionBox, solutionWordPointPaths);
+      }
+    }
+
+    private void foundBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+      foreach (var c in Board.Children)
+      {
+        if (c.GetType() == typeof(Border))
+        {
+          UncolorTile((Border)c);
+        }
+      }
+      int selectedIndex = foundBox.SelectedIndex;
+      if (selectedIndex == -1 || foundBox.Items[selectedIndex].ToString().Count() == 0)
+      {
+        return;
+      }
+      string word = (foundBox.Items[foundBox.SelectedIndex].ToString().Split(' '))[1].ToUpper();
+      for (int i = 0; i < foundWordPointPaths.Count(); ++i)
+      {
+        if (word == foundWordPointPaths[i].word)
+        {
+          List<int> path = foundWordPointPaths[i].path;
+          for (int j = 0; j < path.Count(); ++j)
+          {
+            Border pborder = this.FindName("pborder" + (path[j] + 1)) as Border;
+            ColorTile(pborder);
+          }
+          break;
+        }
+      }
+      justSelectedListBox = true;
+    }
+
+    private void foundBox_MouseLeave(object sender, MouseEventArgs e)
+    {
+      if (justSelectedListBox)
+      {
+        foreach (var c in Board.Children)
+        {
+          if (c.GetType() == typeof(Border))
+          {
+            UncolorTile((Border)c);
+          }
+        }
+        foundBox.SelectedIndex = -1;
+        justSelectedListBox = false;
+      }
+    }
+
+    private class WordPointPath
+    {
+      public WordPointPath(string word, int points, List<int> path)
+      {
+        this.word = word;
+        this.points = points;
+        this.path = path;
+      }
+      public string word;
+      public int points;
+      public List<int> path;
+    }
+
     #region Comparers
 
     // Alphabet.
@@ -711,175 +925,6 @@ namespace WordamentWPF2
 
     #endregion Comparers
 
-    #region Solution stuff
-
-    private void ComputePoints(List<List<string>> words, List<List<List<int>>> paths, List<List<int>> points)
-    {
-      int[] pointsBoard = new int[dim * dim];
-      for (int i = 1; i <= dim * dim; ++i)
-      {
-        pointsBoard[i - 1] = Convert.ToInt32((this.FindName("point" + i.ToString()) as TextBox).Text);
-      }
-      for (int i = 0; i < words.Count(); ++i)
-      {
-        points.Add(new List<int>());
-        for (int j = 0; j < words[i].Count(); ++j)
-        {
-          points[i].Add(ComputePointsHelper(words[i][j].Count(), paths[i][j], pointsBoard));
-        }
-      }
-    }
-
-    private int ComputePointsHelper(int wordLength, List<int> path, int[] pointsBoard)
-    {
-      int ret = 0;
-      for (int i = 0; i < path.Count(); ++i)
-      {
-        ret += pointsBoard[path[i]];
-      }
-      if (wordLength >= 8)
-      {
-        return (int)(2.5 * ret);
-      }
-      if (wordLength >= 6)
-      {
-        return 2 * ret;
-      }
-      if (wordLength >= 5)
-      {
-        return (int)(1.5 * ret);
-      }
-      return ret;
-    }
-
-    private void Display(ListBox box, List<WordPointPath> wordPointPaths)
-    {
-      box.Items.Clear();
-      for (int i = 0; i < wordPointPaths.Count(); ++i)
-      {
-        box.Items.Add(wordPointPaths[i].points + " " + wordPointPaths[i].word.ToLower());
-      }
-    }
-
-    #endregion
-
-    private void timer_Elapsed(object sender, EventArgs e)
-    {
-      seconds++;
-      TimeSpan temp = TimeSpan.FromSeconds(seconds);
-      if (temp.TotalMinutes < 10)
-      {
-        timerLabel.Content = temp.ToString().Substring(4);
-      }
-      else if (temp.TotalHours < 1)
-      {
-        timerLabel.Content = temp.ToString().Substring(3);
-      }
-      else
-      {
-        timerLabel.Content = temp.ToString().Substring(1);
-      }
-    }
-
-    private void pauseButton_Click(object sender, RoutedEventArgs e)
-    {
-      for (int i = 0; i < currentPath.Count(); ++i)
-      {
-        UncolorTile(currentPath[i]);
-      }
-      currentPath.Clear();
-      mouseLeftButtonPressed = false;
-      if ((string)pauseButton.Content == "Pause")
-      {
-        if (timer.IsEnabled)
-        {
-          timer.Stop();
-          pauseButton.Content = "Unpause";
-        }
-      }
-      else if ((string)pauseButton.Content == "Unpause")
-      {
-        if (!timer.IsEnabled)
-        {
-          timer.Start();
-          pauseButton.Content = "Pause";
-        }
-      }
-    }
-
-    private void clearButton_Click(object sender, RoutedEventArgs e)
-    {
-      started = false;
-      timer.Stop();
-      seconds = 0;
-      timerLabel.Content = "0:00";
-      pauseButton.Content = "Pause";
-      words.Clear();
-      solutionWordPointPaths.Clear();
-      foundWordPointPaths.Clear();
-      points.Clear();
-      paths.Clear();
-      totalPoints = 0;
-      foundPoints = 0;
-      pointsLabel.Content = "";
-      wordsLabel.Content = "";
-      foundBox.Items.Clear();
-      solutionBox.Items.Clear();
-      foreach (var c in Board.Children)
-      {
-        if (c.GetType() == typeof(Border))
-        {
-          UncolorTile((Border)c);
-          TextBox letterTextBox = (TextBox)((Border)((Border)c).Child).Child;
-          letterTextBox.IsHitTestVisible = true;
-          letterTextBox.Text = "";
-        }
-        if (c.GetType() == typeof(TextBox))
-        {
-          TextBox pointTextBox = (TextBox)c;
-          pointTextBox.IsHitTestVisible = true;
-          pointTextBox.Text = "";
-        }
-      }
-    }
-
-    private void comboBox1_DropDownOpened(object sender, EventArgs e)
-    {
-      comboBox1.Foreground = new SolidColorBrush(Colors.Black);
-    }
-
-    private void comboBox1_DropDownClosed(object sender, EventArgs e)
-    {
-      comboBox1.Foreground = new SolidColorBrush(Colors.White);
-    }
-
-    private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-      SortWordPointPaths(solutionWordPointPaths);
-      SortWordPointPaths(foundWordPointPaths);
-      if (foundBox.Items.Count != 0)
-      {
-        Display(foundBox, foundWordPointPaths);
-      }
-      if (solutionBox.Items.Count != 0)
-      {
-        Display(solutionBox, solutionWordPointPaths);
-      }
-    }
-
-    private class WordPointPath
-    {
-      public WordPointPath(string word, int points, List<int> path)
-      {
-        this.word = word;
-        this.points = points;
-        this.path = path;
-      }
-      public string word;
-      public int points;
-      public List<int> path;
-    }
-
     #region Fields
 
     private bool started = false;
@@ -910,9 +955,21 @@ namespace WordamentWPF2
     private int totalPoints = 0;
     private int foundPoints = 0;
 
+    private bool justSelectedListBox = false;
+
     #endregion
 
-   
-   
+    private void Button_MouseLeave(object sender, MouseEventArgs e)
+    {
+      if (Mouse.LeftButton != MouseButtonState.Pressed)
+      {
+        if (started && currentPath.Count() != 0)
+        {
+          mouseLeftButtonPressed = false;
+          CheckPathForWord(currentPath);
+          currentPath.Clear();
+        }
+      }
+    }
   }
 }

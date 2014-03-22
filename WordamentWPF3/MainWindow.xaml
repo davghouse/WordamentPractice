@@ -19,7 +19,7 @@
         </Border>
         <Border x:Name="pborder3"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
             <Border x:Name="cborder3" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="3" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+                <TextBox x:Name="textbox3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="3" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0" FontFamily="Microsoft Sans Serif"/>
             </Border>
         </Border>
         <Border x:Name="pborder4"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
@@ -103,10 +103,10 @@
         <TextBox x:Name="point14" Text="" HorizontalAlignment="Left" Margin="123,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="30" BorderThickness="0" />
         <TextBox x:Name="point15" Text="" HorizontalAlignment="Left" Margin="236,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="31" BorderThickness="0" />
         <TextBox x:Name="point16" Text="" HorizontalAlignment="Left" Margin="349,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="32" BorderThickness="0" />
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="33" Click="startButton_Click"/>
-        <Button x:Name="pauseButton" Content="Pause" HorizontalAlignment="Left" Margin="123,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="34" Click="pauseButton_Click"/>
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="349,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="36" Click="clearButton_Click"/>
-        <Button x:Name="solveButton" Content="Solve" HorizontalAlignment="Left" Margin="765,38,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="35" Click="solveButton_Click"/>
+        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="33" Click="startButton_Click" MouseLeave="Button_MouseLeave"/>
+        <Button x:Name="pauseButton" Content="Pause" HorizontalAlignment="Left" Margin="123,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="34" Click="pauseButton_Click" MouseLeave="Button_MouseLeave"/>
+        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="349,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="36" Click="clearButton_Click" MouseLeave="Button_MouseLeave"/>
+        <Button x:Name="solveButton" Content="Solve" HorizontalAlignment="Left" Margin="765,38,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="35" Click="solveButton_Click" MouseLeave="Button_MouseLeave"/>
         <ListBox x:Name="solutionBox" HorizontalAlignment="Left" Height="482" Margin="672,68,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0"/>
         <Label x:Name="timerLabel" Content="0:00" HorizontalAlignment="Left" Margin="349,13,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="36" Foreground="White"/>
         <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="462,34,0,0" VerticalAlignment="Top" Width="193" Background="{x:Null}" Foreground="White" FontFamily="Microsoft Sans Serif" DropDownOpened="comboBox1_DropDownOpened" DropDownClosed="comboBox1_DropDownClosed" IsTabStop="False" IsHitTestVisible="True" SelectionChanged="comboBox1_SelectionChanged">
@@ -130,7 +130,8 @@
         <Label Content="Order by:" HorizontalAlignment="Left" Margin="458,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.194,0.478" IsHitTestVisible="False" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="12"/>
         <Label x:Name="pointsLabel" Content="" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
         <Label x:Name="wordsLabel" Content="" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.056,0.522" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
-        <ListBox x:Name="foundBox" HorizontalAlignment="Left" Height="482" Margin="462,68,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0"/>
-    </Grid>
+        <ListBox x:Name="foundBox" HorizontalAlignment="Left" Height="482" Margin="462,68,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" SelectionChanged="foundBox_SelectionChanged" MouseLeave="foundBox_MouseLeave"/>
+    
+  </Grid>
 </Window>
 
