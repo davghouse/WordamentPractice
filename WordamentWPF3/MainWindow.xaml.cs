@@ -298,6 +298,13 @@ namespace WordamentWPF2
     {
       if (!started)
       {
+        for (int i = 1; i < dim * dim; ++i)
+        {
+          if (((TextBox)this.FindName("textbox" + i.ToString())).Text == "")
+          {
+            return;
+          }
+        }
         startButton_Click(null, new RoutedEventArgs());
         pauseButton_Click(null, new RoutedEventArgs());
       }
