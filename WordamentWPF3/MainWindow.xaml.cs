@@ -39,7 +39,9 @@ namespace WordamentWPF2
     {
       if (Mouse.LeftButton == MouseButtonState.Pressed)
       {
+
         mouseLeftButtonPressed = true;
+
       }
       else
       {
@@ -177,6 +179,14 @@ namespace WordamentWPF2
     private void ParentBorder_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
     {
       Border parentBorder = (Border)sender;
+      if ((string)currentWordLabel.Content != "")
+      {
+        for (int i = 1; i <= dim * dim; ++i)
+        {
+          UncolorTile(((Border)this.FindName("pborder" + i.ToString())));
+        }
+        currentWordLabel.Content = "";
+      }
       if ((currentPath.Count() == 0) && started)
       {
         currentPath.Add(parentBorder);
@@ -579,6 +589,7 @@ namespace WordamentWPF2
       foundPoints = 0;
       pointsLabel.Content = "";
       wordsLabel.Content = "";
+      currentWordLabel.Content = "";
       foundBox.Items.Clear();
       solutionBox.Items.Clear();
       foreach (var c in Board.Children)
@@ -630,7 +641,10 @@ namespace WordamentWPF2
       {
         if (c.GetType() == typeof(Border))
         {
-          UncolorTile((Border)c);
+          if (((Border)c).Background.Opacity == 0)
+          {
+            UncolorTile((Border)c);
+          }
         }
       }
       int selectedIndex = box.SelectedIndex;
@@ -699,23 +713,6 @@ namespace WordamentWPF2
         colorGradient.Add(Color.FromArgb(255, (byte)rAverage, (byte)gAverage, (byte)bAverage));
       }
       return colorGradient;
-    }
-
-    private void listBox_MouseLeave(object sender, MouseEventArgs e)
-    {
-      currentWordLabel.Content = "";
-      if (justSelectedListBox)
-      {
-        foreach (var c in Board.Children)
-        {
-          if (c.GetType() == typeof(Border))
-          {
-            UncolorTile((Border)c);
-          }
-        }
-        ((ListBox)sender).SelectedIndex = -1;
-        justSelectedListBox = false;
-      }
     }
 
     private void button_MouseLeave(object sender, MouseEventArgs e)
