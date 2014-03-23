@@ -1018,5 +1018,73 @@ namespace WordamentWPF2
     private bool justSelectedListBox = false;
 
     #endregion
+
+    private void SaveAs_Click(object sender, RoutedEventArgs e)
+    {
+      Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+      //dlg.FileName = "Document"; // Default file name
+      dlg.DefaultExt = ".text"; // Default file extension
+      dlg.Filter = "Text documents (.txt)|*.txt"; // Filter files by extension
+
+      // Show save file dialog box
+      Nullable<bool> result = dlg.ShowDialog();
+
+      // Process save file dialog box results
+      if (result == true)
+      {
+        // Save document
+        string filename = dlg.FileName;
+        using (StreamWriter writer = new StreamWriter(filename))
+        {
+          string[] stringBoard = new string[dim * dim];
+          string[] pointsBoard = new string[dim * dim];
+          for (int i = 1; i <= dim*dim; ++i)
+          {
+            stringBoard[i - 1] = ((TextBox)this.FindName("textbox" + i.ToString())).Text;
+            pointsBoard[i - 1] = ((TextBox)this.FindName("point" + i.ToString())).Text;
+          }
+          for (int i = 0; i < dim * dim; ++i)
+          {
+            writer.WriteLine(stringBoard[i]);
+          }
+          for (int i = 0; i < dim * dim; ++i)
+          {
+            writer.WriteLine(pointsBoard[i]);
+          }
+        }
+      }
+    }
+
+    private void Load_Click(object sender, RoutedEventArgs e)
+    {
+      
+      Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+      dlg.Filter = "Text documents (.txt)|*.txt";
+      Nullable<bool> result = dlg.ShowDialog();
+       if (result == true)
+      {
+        clearButton_Click(null, new RoutedEventArgs());
+        // Load document
+        string filename = dlg.FileName;
+        using (StreamReader reader = new StreamReader(filename))
+        {
+          string[] stringBoard = new string[dim * dim];
+          string[] pointsBoard = new string[dim * dim];
+          for (int i = 1; i <= dim*dim; ++i)
+          {
+            stringBoard[i - 1] = reader.ReadLine();
+          }
+           for (int i = 1; i <= dim*dim; ++i)
+          {
+            pointsBoard[i - 1] = reader.ReadLine();
+          }
+          for (int i = 1; i <= dim * dim; ++i)
+          {
+            ((TextBox)this.FindName("textbox" + i.ToString())).Text = stringBoard[i - 1];
+            ((TextBox)this.FindName("point" + i.ToString())).Text = pointsBoard[i - 1];
+          }
+        }
+      }
+    }
   }
 }

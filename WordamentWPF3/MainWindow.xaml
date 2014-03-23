@@ -2,137 +2,146 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:igWindows="http://infragistics.com/Windows" x:Name="Wordament_Practice" x:Class="WordamentWPF2.MainWindow"
-        Title="Wordament Practice" Height="600.862" Width="888.884" Background="{x:Null}" Foreground="{x:Null}" MouseLeftButtonDown="Window_CheckMouseLeftButtonState" MouseLeftButtonUp="Window_CheckMouseLeftButtonState" MouseEnter="Window_CheckMouseLeftButtonState" ResizeMode="CanMinimize">
-    <Grid x:Name="Board" OpacityMask="Black" Margin="0,1,-11,-2" Height="574" VerticalAlignment="Top" HorizontalAlignment="Left" Width="894">
-        <Grid.Background>
-            <ImageBrush ImageSource="WordamentBackground.PNG"/>
-        </Grid.Background>
-        <Border x:Name="pborder1"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder1" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox1" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="1" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder2"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder2" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox2" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="2" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0" OpacityMask="Black"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder3"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder3" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="3" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0" FontFamily="Microsoft Sans Serif"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder4"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,68,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder4" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox4" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="4" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder5"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder5" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox5" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="5" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder6"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder6" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox6" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="6" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder7"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder7" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox7" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="7" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder8"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,181,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder8" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox8" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="8" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder9"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder9" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox9" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="9" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder10"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder10" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox10" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="10" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder11"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder11" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox11" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="11" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder12"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,294,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder12" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox12" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="12" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder13"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder13" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox13" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="14" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder14"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder14" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox14" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="14" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder15"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder15" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
-                <TextBox x:Name="textbox15" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="15" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <Border x:Name="pborder16"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,407,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
-            <Border x:Name="cborder16" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange" Margin="-1,0,1,0">
-                <TextBox x:Name="textbox16" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="16" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
-            </Border>
-        </Border>
-        <TextBox x:Name="point1" Text="" HorizontalAlignment="Left" Margin="10,68,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="17" BorderThickness="0"/>
-        <TextBox x:Name="point2" Text="" HorizontalAlignment="Left" Margin="123,68,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="18" BorderThickness="0"/>
-        <TextBox x:Name="point3" Text="" HorizontalAlignment="Left" Margin="236,68,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="19" BorderThickness="0,0,0,1"/>
-        <TextBox x:Name="point4" Text="" HorizontalAlignment="Left" Margin="349,68,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="20" BorderThickness="0"/>
-        <TextBox x:Name="point5" Text="" HorizontalAlignment="Left" Margin="10,181,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="21" BorderThickness="0"/>
-        <TextBox x:Name="point6" Text="" HorizontalAlignment="Left" Margin="123,181,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="22" BorderThickness="0" />
-        <TextBox x:Name="point7" Text="" HorizontalAlignment="Left" Margin="236,181,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="23" BorderThickness="0" />
-        <TextBox x:Name="point8" Text="" HorizontalAlignment="Left" Margin="349,181,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="24" BorderThickness="0" />
-        <TextBox x:Name="point9" Text="" HorizontalAlignment="Left" Margin="10,294,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="25" BorderThickness="0" />
-        <TextBox x:Name="point10" Text="" HorizontalAlignment="Left" Margin="123,294,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="26" BorderThickness="0" />
-        <TextBox x:Name="point11" Text="" HorizontalAlignment="Left" Margin="236,294,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="27" BorderThickness="0" />
-        <TextBox x:Name="point12" Text="" HorizontalAlignment="Left" Margin="349,294,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="28" BorderThickness="0" />
-        <TextBox x:Name="point13" Text="" HorizontalAlignment="Left" Margin="10,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="29" BorderThickness="0" />
-        <TextBox x:Name="point14" Text="" HorizontalAlignment="Left" Margin="123,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="30" BorderThickness="0" />
-        <TextBox x:Name="point15" Text="" HorizontalAlignment="Left" Margin="236,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="31" BorderThickness="0" />
-        <TextBox x:Name="point16" Text="" HorizontalAlignment="Left" Margin="349,407,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="32" BorderThickness="0" />
-        <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="33" Click="startButton_Click" MouseLeave="button_MouseLeave"/>
-        <Button x:Name="pauseButton" Content="Pause" HorizontalAlignment="Left" Margin="123,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="34" Click="pauseButton_Click" MouseLeave="button_MouseLeave"/>
-        <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="349,530,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="36" Click="clearButton_Click" MouseLeave="button_MouseLeave"/>
-        <Button x:Name="solveButton" Content="Solve" HorizontalAlignment="Left" Margin="765,38,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="35" Click="solveButton_Click" MouseLeave="button_MouseLeave"/>
-        <ListBox x:Name="solutionBox" HorizontalAlignment="Left" Height="482" Margin="672,68,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" SelectionChanged="listBox_SelectionChanged" MouseLeave="listBox_MouseLeave"/>
-        <Label x:Name="timerLabel" Content="0:00" HorizontalAlignment="Left" Margin="349,13,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="36" Foreground="White"/>
-        <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="462,34,0,0" VerticalAlignment="Top" Width="193" Background="{x:Null}" Foreground="White" FontFamily="Microsoft Sans Serif" DropDownOpened="comboBox1_DropDownOpened" DropDownClosed="comboBox1_DropDownClosed" IsTabStop="False" IsHitTestVisible="True" SelectionChanged="comboBox1_SelectionChanged">
-            <ComboBoxItem Content="alphabet" HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="points" HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="word length [w. l.]" HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="path length [p. l.]" HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="points / w. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="points / p. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="start pos. by: points" HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="start pos. by: w. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="start pos. by: points / w. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="start pos. by: points / p. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="A, B, ... by: points" HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="A, B, ... by: w. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="A, B, ... by: points / w. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="A, B, ... by: points / p. l." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="sr: w. l. asc." HorizontalAlignment="Left" Width="191"/>
-            <ComboBoxItem Content="sr: start pos. by w. l. asc." HorizontalAlignment="Left" Width="191"/>
-        </ComboBox>
-        <Label Content="Order by:" HorizontalAlignment="Left" Margin="458,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.194,0.478" IsHitTestVisible="False" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="12"/>
-        <Label x:Name="pointsLabel" Content="" HorizontalAlignment="Left" Margin="10,8,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
-        <Label x:Name="wordsLabel" Content="" HorizontalAlignment="Left" Margin="10,37,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.056,0.522" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
-        <ListBox x:Name="foundBox" HorizontalAlignment="Left" Height="482" Margin="462,68,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" SelectionChanged="listBox_SelectionChanged" MouseLeave="listBox_MouseLeave"/>
-    <Label x:Name="currentWordLabel" Content="" HorizontalAlignment="Left" Margin="148,37,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="16" Foreground="White" RenderTransformOrigin="0.154,0.375"/>
-
+        Title="Wordament Practice" Height="618.862" Width="888.884" Background="{x:Null}" Foreground="{x:Null}" MouseLeftButtonDown="Window_CheckMouseLeftButtonState" MouseLeftButtonUp="Window_CheckMouseLeftButtonState" MouseEnter="Window_CheckMouseLeftButtonState" ResizeMode="CanMinimize">
+  <Grid x:Name="Board" OpacityMask="Black" Margin="0,1,-11,1" HorizontalAlignment="Left" Width="894">
+    <Grid.Background>
+      <ImageBrush ImageSource="WordamentBackground.PNG"/>
+    </Grid.Background>
+    <Border x:Name="pborder1"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,81,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder1" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox1" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="1" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder2"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,81,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder2" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox2" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="2" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0" OpacityMask="Black"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder3"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,81,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder3" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox3" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="3" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0" FontFamily="Microsoft Sans Serif"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder4"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,81,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder4" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox4" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="4" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder5"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,194,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder5" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox5" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="5" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder6"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,194,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder6" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox6" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="6" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder7"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,194,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder7" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox7" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="7" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder8"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,194,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder8" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox8" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="8" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder9"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,307,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder9" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox9" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="9" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder10"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,307,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder10" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox10" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="10" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder11"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,307,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder11" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox11" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="11" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder12"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,307,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder12" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox12" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="12" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder13"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="10,420,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder13" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox13" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="14" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder14"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="123,420,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder14" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox14" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="14" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder15"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="236,420,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder15" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange">
+        <TextBox x:Name="textbox15" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="15" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <Border x:Name="pborder16"  BorderBrush="DarkOrange" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="349,420,0,0" VerticalAlignment="Top" Width="100" MouseLeftButtonDown="ParentBorder_MouseLeftButtonDown" Background="DarkOrange">
+      <Border x:Name="cborder16" BorderBrush="DarkOrange" BorderThickness="1" CornerRadius="50" MouseEnter="ChildBorder_MouseEnter" Background="DarkOrange" Margin="-1,0,1,0">
+        <TextBox x:Name="textbox16" Text="" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Microsoft Sans Serif" FontSize="72" Foreground="White" IsHitTestVisible="True" Background="{x:Null}" Margin="-1" Width="98" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" TabIndex="16" CharacterCasing="Upper" TextChanged="textbox_TextChanged" BorderThickness="0"/>
+      </Border>
+    </Border>
+    <TextBox x:Name="point1" Text="" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="17" BorderThickness="0"/>
+    <TextBox x:Name="point2" Text="" HorizontalAlignment="Left" Margin="123,81,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="18" BorderThickness="0"/>
+    <TextBox x:Name="point3" Text="" HorizontalAlignment="Left" Margin="236,81,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="19" BorderThickness="0,0,0,1"/>
+    <TextBox x:Name="point4" Text="" HorizontalAlignment="Left" Margin="349,81,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="20" BorderThickness="0"/>
+    <TextBox x:Name="point5" Text="" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="21" BorderThickness="0"/>
+    <TextBox x:Name="point6" Text="" HorizontalAlignment="Left" Margin="123,194,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="22" BorderThickness="0" />
+    <TextBox x:Name="point7" Text="" HorizontalAlignment="Left" Margin="236,194,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="23" BorderThickness="0" />
+    <TextBox x:Name="point8" Text="" HorizontalAlignment="Left" Margin="349,194,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="24" BorderThickness="0" />
+    <TextBox x:Name="point9" Text="" HorizontalAlignment="Left" Margin="10,307,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="25" BorderThickness="0" />
+    <TextBox x:Name="point10" Text="" HorizontalAlignment="Left" Margin="123,307,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="26" BorderThickness="0" />
+    <TextBox x:Name="point11" Text="" HorizontalAlignment="Left" Margin="236,307,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="27" BorderThickness="0" />
+    <TextBox x:Name="point12" Text="" HorizontalAlignment="Left" Margin="349,307,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="28" BorderThickness="0" />
+    <TextBox x:Name="point13" Text="" HorizontalAlignment="Left" Margin="10,420,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="29" BorderThickness="0" />
+    <TextBox x:Name="point14" Text="" HorizontalAlignment="Left" Margin="123,420,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="30" BorderThickness="0" />
+    <TextBox x:Name="point15" Text="" HorizontalAlignment="Left" Margin="236,420,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="31" BorderThickness="0" />
+    <TextBox x:Name="point16" Text="" HorizontalAlignment="Left" Margin="349,420,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" IsHitTestVisible="True" FontSize="16" Background="{x:Null}" BorderBrush="{x:Null}" TabIndex="32" BorderThickness="0" />
+    <Button x:Name="startButton" Content="Start" HorizontalAlignment="Left" Margin="10,543,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="33" Click="startButton_Click" MouseLeave="button_MouseLeave"/>
+    <Button x:Name="pauseButton" Content="Pause" HorizontalAlignment="Left" Margin="123,543,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="34" Click="pauseButton_Click" MouseLeave="button_MouseLeave"/>
+    <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Left" Margin="349,543,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="36" Click="clearButton_Click" MouseLeave="button_MouseLeave"/>
+    <Button x:Name="solveButton" Content="Solve" HorizontalAlignment="Left" Margin="765,51,0,0" VerticalAlignment="Top" Width="100" FontFamily="Microsoft Sans Serif" TabIndex="35" Click="solveButton_Click" MouseLeave="button_MouseLeave"/>
+    <ListBox x:Name="solutionBox" HorizontalAlignment="Left" Height="482" Margin="672,81,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" SelectionChanged="listBox_SelectionChanged" MouseLeave="listBox_MouseLeave"/>
+    <Label x:Name="timerLabel" Content="0:00" HorizontalAlignment="Left" Margin="349,26,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="36" Foreground="White"/>
+    <ComboBox x:Name="comboBox1" HorizontalAlignment="Left" Margin="462,47,0,0" VerticalAlignment="Top" Width="193" Background="{x:Null}" Foreground="White" FontFamily="Microsoft Sans Serif" DropDownOpened="comboBox1_DropDownOpened" DropDownClosed="comboBox1_DropDownClosed" IsTabStop="False" IsHitTestVisible="True" SelectionChanged="comboBox1_SelectionChanged" MouseLeave="button_MouseLeave">
+      <ComboBoxItem Content="alphabet" HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="points" HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="word length [w. l.]" HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="path length [p. l.]" HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="points / w. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="points / p. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="start pos. by: points" HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="start pos. by: w. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="start pos. by: points / w. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="start pos. by: points / p. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="A, B, ... by: points" HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="A, B, ... by: w. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="A, B, ... by: points / w. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="A, B, ... by: points / p. l." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="sr: w. l. asc." HorizontalAlignment="Left" Width="191"/>
+      <ComboBoxItem Content="sr: start pos. by w. l. asc." HorizontalAlignment="Left" Width="191"/>
+    </ComboBox>
+    <Label Content="Order by:" HorizontalAlignment="Left" Margin="458,23,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.194,0.478" IsHitTestVisible="False" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="12"/>
+    <Label x:Name="pointsLabel" Content="" HorizontalAlignment="Left" Margin="10,21,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
+    <Label x:Name="wordsLabel" Content="" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.056,0.522" FontFamily="Microsoft Sans Serif" Foreground="White" FontSize="16"/>
+    <ListBox x:Name="foundBox" HorizontalAlignment="Left" Height="482" Margin="462,81,0,0" VerticalAlignment="Top" Width="193" FontFamily="Microsoft Sans Serif" FontSize="12" BorderBrush="White" Background="{x:Null}" Foreground="White" BorderThickness="0,1,0,0" SelectionChanged="listBox_SelectionChanged" MouseLeave="listBox_MouseLeave"/>
+    <Label x:Name="currentWordLabel" Content="" HorizontalAlignment="Left" Margin="148,50,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="16" Foreground="White" RenderTransformOrigin="0.154,0.375"/>
+    <DockPanel>
+      <Menu DockPanel.Dock="Top" Foreground="White" BorderThickness="0,0,0,1" BorderBrush="White" Background="{x:Null}" Margin="0,0,10,0">
+        <MenuItem Header="_File" Foreground="White" FontFamily="Microsoft Sans Serif" FontSize="14" MouseLeave="button_MouseLeave">
+          <MenuItem Header="Save As..."  FontFamily="Microsoft Sans Serif" FontSize="12" Click="SaveAs_Click"/>
+          <MenuItem Header="Load"  FontFamily="Microsoft Sans Serif" FontSize="12" Click="Load_Click"/>
+        </MenuItem>
+      </Menu>
+      <StackPanel/>
+    </DockPanel>
+    <Label Content="Tab to begin entering letter and special point values. Pressing Start fills in anything that's missing and begins the practice round." HorizontalAlignment="Left" Margin="50,-2,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Microsoft Sans Serif" FontSize="14" FontStyle="Italic"/>
   </Grid>
 </Window>
 
