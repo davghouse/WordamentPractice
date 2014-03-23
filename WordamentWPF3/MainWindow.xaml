@@ -134,14 +134,14 @@
     <Label x:Name="currentWordLabel" Content="" HorizontalAlignment="Left" Margin="148,50,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="16" Foreground="White" RenderTransformOrigin="0.154,0.375"/>
     <DockPanel>
       <Menu DockPanel.Dock="Top" Foreground="White" BorderThickness="0,0,0,1" BorderBrush="White" Background="{x:Null}" Margin="0,0,10,0">
-        <MenuItem Header="_File" Foreground="White" FontFamily="Microsoft Sans Serif" FontSize="14" MouseLeave="button_MouseLeave" IsTabStop="False">
-          <MenuItem Header="Save As..."  FontFamily="Microsoft Sans Serif" FontSize="12" Click="SaveAs_Click"/>
-          <MenuItem Header="Load"  FontFamily="Microsoft Sans Serif" FontSize="12" Click="Load_Click"/>
+        <MenuItem Header="File" Foreground="White" FontFamily="Microsoft Sans Serif" FontSize="14" MouseLeave="button_MouseLeave" IsTabStop="False">
+          <MenuItem Header="Save As..."  FontFamily="Microsoft Sans Serif" FontSize="12" Click="SaveAs_Click" Foreground="Black"/>
+          <MenuItem Header="Load"  FontFamily="Microsoft Sans Serif" FontSize="12" Click="Load_Click" Foreground="Black"/>
         </MenuItem>
       </Menu>
       <StackPanel/>
     </DockPanel>
-    <Label Content="Tab to begin entering tile strings and special point values. Pressing Start fills in anything that's missing and begins the practice round." HorizontalAlignment="Left" Margin="50,-2,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Microsoft Sans Serif" FontSize="14" FontStyle="Italic"/>
+    <Label Content="Tab to begin entering tile strings and special point values. Pressing Start fills in anything that's missing and begins the practice round." HorizontalAlignment="Left" Margin="37,-3,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Microsoft Sans Serif" FontSize="14" FontStyle="Italic"/>
   </Grid>
 </Window>
 
