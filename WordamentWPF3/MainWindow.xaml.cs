@@ -296,6 +296,11 @@ namespace WordamentWPF2
 
     private void solveButton_Click(object sender, RoutedEventArgs e)
     {
+      if (!started)
+      {
+        startButton_Click(null, new RoutedEventArgs());
+        pauseButton_Click(null, new RoutedEventArgs());
+      }
       Display(solutionBox, solutionWordPointPaths);
     }
 
