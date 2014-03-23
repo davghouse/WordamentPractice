@@ -22,7 +22,7 @@ build/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
-*.licx
+
 *_i.c
 *_p.c
 *.ilk
