@@ -1,7 +1,7 @@
 wordament-practice
 ==================
 
-Wordament-based desktop app for some single-player practice. I think you need .NET 4.5 for this to run. 
+(English) Wordament-based desktop app for single-player practice. I think you need .NET 4.5 for this to run. 
 
 Latest release [here](https://github.com/davghouse/wordament-practice/releases/tag/v1.0.0). I am working on this as an introduction to C#/.NET/WPF/XAML.
 
@@ -11,13 +11,13 @@ Latest release [here](https://github.com/davghouse/wordament-practice/releases/t
 
 Use
 ---
-* Right now I'm entering boards from Wordament and playing on them when I want to practice. Pressing Start without all the tile strings entered will randomly fill the remaining with single letters. Pressing Start with full tile strings will guess at any point values that haven't been filled in. These guesses are only correct all the time (I think) for single-letter non-special/high-value tiles.
+* Right now I'm entering boards from Wordament and playing on them when I want to practice. Pressing Start without all the tile strings entered will randomly fill the remaining empty tiles with single letters. Pressing Start with full tile strings will guess at any point values that haven't been filled in. These guesses are only correct all the time (I think) for basic single-letter tiles.
 
 To-do
 -----
-* Good (common word dense) board generation sounds like a fun related project.
-* Rotation maybe. 
-* Just like the solver I'm using the TWL dictionary for Scrabble so I don't have 16 letters words. Getting those would be good. 
-* Tabbing with space and enter.
-* Sounds.
-* Only tabbing to point values corresponding to special tiles might be better than tabbing through all point values. Wouldn't get high-value single-letter tiles though.
+* Good (common-word-dense) board generation
+* Rotation
+* A dictionary with 16-letter words
+* Tabbing with space and enter
+* Sounds
+
