@@ -11,8 +11,7 @@ Latest release [here](https://github.com/davghouse/wordament-practice/releases/t
 
 Use
 ---
-* Right now I'm entering boards from Wordament and playing on them when I want to practice. Pressing Start without all the tile strings entered will randomly fill the remaining empty tiles with single letters. Pressing Start with full tile strings will guess at any point values that haven't been filled in. These guesses are only correct all the time (I think) for basic single-letter tiles. (See [here](https://github.com/davghouse/wordament-solver#limitations)
-) for more information on limitations.)
+* Right now I'm entering boards from Wordament and playing on them when I want to practice. Pressing Start without all the tile strings entered will randomly fill the remaining empty tiles with single letters. Pressing Start with full tile strings will guess at any point values that haven't been filled in. These guesses are only correct all the time (I think) for basic single-letter tiles. (See [here](https://github.com/davghouse/wordament-solver#limitations) for more information on limitations.)
 
 To-do
 -----
