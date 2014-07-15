@@ -3,7 +3,7 @@ wordament-practice
 
 (English) Wordament-based desktop app for single-player practice. I think you need .NET 4.5 for this to run. 
 
-Latest release [here](https://github.com/davghouse/wordament-practice/releases/tag/v1.0.0). I'm working on this as an introduction to C#/.NET/WPF/XAML.
+Latest release [here](https://github.com/davghouse/wordament-practice/releases/tag/v1.0.0). I'm working on this as an introduction to C#/.NET/WPF/XAML. In retrospect this was pretty useless because I used WPF in the same way I'd been using WinForms. I just handled events in the code-behind and didn't get experience with MVVM, data binding, triggers, templates... XAML in general.
 
 ![one](/Screenshots/1.PNG)
 ![two](/Screenshots/2.PNG)
