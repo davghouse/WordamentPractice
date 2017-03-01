@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Media;
 
-namespace WordamentPractice
+namespace Daves.WordamentPractice
 {
   class Helpers
   {

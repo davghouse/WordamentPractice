@@ -19,7 +19,7 @@ using System.Timers;
 
 // This code got pretty messy, especially startButton_Click and CheckPathForWord.
 
-namespace WordamentPractice
+namespace Daves.WordamentPractice
 {
   public partial class MainWindow : Window
   {
@@ -107,7 +107,7 @@ namespace WordamentPractice
         }
         try
         {
-          words = WordamentRecursiveOOSolver.Solver.RunSolver(stringBoard, paths);
+          words = Solver.RunSolver(stringBoard, paths);
           ComputePoints();
         }
         catch

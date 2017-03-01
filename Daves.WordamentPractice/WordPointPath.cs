@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Forms;
 
-namespace WordamentPractice
+namespace Daves.WordamentPractice
 {
   class WordPointPath
   {

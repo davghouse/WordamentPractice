@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WordamentPractice
+namespace Daves.WordamentPractice
 {
   // Alphabet.
   class WordPointPathComparer0 : IComparer<WordPointPath>
