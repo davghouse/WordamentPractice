@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace Daves.WordamentPractice
 {
-  class Helpers
+  class Helpersa
   {
     // Converting to points in a grid and finding the Euclidean distance between them.
     public static bool tilesAreAdjacent(int i, int j)

@@ -273,7 +273,7 @@ namespace Daves.WordamentPractice
           // The tile isn't first, and isn't already taken; check if it is adjacent to the previous tile in the path.
           int tileIndex = Convert.ToInt32(parentBorder.Name.Substring(7));
           int previousTileIndex = Convert.ToInt32(currentPath[currentPath.Count() - 1].Name.Substring(7));
-          if (Helpers.tilesAreAdjacent(tileIndex, previousTileIndex))
+          if (Helpersa.tilesAreAdjacent(tileIndex, previousTileIndex))
           {
             color = true;
           }
@@ -535,7 +535,7 @@ namespace Daves.WordamentPractice
         {
           currentWordLabel.Content = word;
           List<int> path = wordPointPaths[i].path;
-          List<Color> colorGradient = Helpers.CreateColorGradient(Colors.LightGreen, Colors.Tomato, path.Count());
+          List<Color> colorGradient = Helpersa.CreateColorGradient(Colors.LightGreen, Colors.Tomato, path.Count());
           for (int j = 0; j < path.Count(); ++j)
           {
             Border pborder = this.FindName("pborder" + (path[j] + 1)) as Border;
