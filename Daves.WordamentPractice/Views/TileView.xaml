@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Daves.WordamentPractice.Views.TileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:Daves.WordamentPractice.ViewModels"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:TileViewModel}">
+  <Border Margin="5" Background="DarkOrange">
+    <Border CornerRadius="50" Margin="1" Background="DarkOrange">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Would like to wrap in a Viewbox here for autoscaling to avoid the TextChanged handler,
+          but then the selectable area of the textbox shrinks, making clicking it difficult. -->
+        <TextBox Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
+                 Text="{Binding Path=String}" TextChanged="Tile_TextChanged_ResizeFontToFit"
+                 BorderThickness="0" Foreground="White" Background="DarkOrange"
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                 FontFamily="Microsoft Sans Serif" FontSize="72" CharacterCasing="Upper"/>
+
+        <TextBox Grid.Row="0" Grid.Column="0"
+                 Text="{Binding Path=Points}"
+                 BorderThickness="0" Foreground="White" Background="DarkOrange"
+                 FontFamily="Microsoft Sans Serif" FontSize="16" IsTabStop="False"/>
+      </Grid>
+    </Border>
+  </Border>
+</UserControl>

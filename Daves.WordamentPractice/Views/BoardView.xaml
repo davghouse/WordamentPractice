@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="Daves.WordamentPractice.Views.BoardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:Daves.WordamentPractice.Views"
+             xmlns:viewModels="clr-namespace:Daves.WordamentPractice.ViewModels"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:BoardViewModel}">
+  <UserControl.Resources>
+    <DataTemplate DataType="{x:Type viewModels:TileViewModel}">
+      <views:TileView/>
+    </DataTemplate>
+  </UserControl.Resources>
+
+    <Grid Grid.Column="0">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+
+      <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding TileViewModels[0]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding TileViewModels[1]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="0" Grid.Column="2" Content="{Binding TileViewModels[2]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="0" Grid.Column="3" Content="{Binding TileViewModels[3]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding TileViewModels[4]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding TileViewModels[5]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding TileViewModels[6]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="1" Grid.Column="3" Content="{Binding TileViewModels[7]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="2" Grid.Column="0" Content="{Binding TileViewModels[8]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="2" Grid.Column="1" Content="{Binding TileViewModels[9]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="2" Grid.Column="2" Content="{Binding TileViewModels[10]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="2" Grid.Column="3" Content="{Binding TileViewModels[11]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="3" Grid.Column="0" Content="{Binding TileViewModels[12]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="3" Grid.Column="1" Content="{Binding TileViewModels[13]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="3" Grid.Column="2" Content="{Binding TileViewModels[14]}" IsTabStop="False"/>
+      <ContentControl Grid.Row="3" Grid.Column="3" Content="{Binding TileViewModels[15]}" IsTabStop="False"/>
+    </Grid>
+</UserControl>

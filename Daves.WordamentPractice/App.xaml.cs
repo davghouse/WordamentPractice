@@ -1,4 +1,5 @@
 ﻿using Daves.WordamentPractice.Helpers;
+using Daves.WordamentPractice.Views;
 using Daves.WordamentSolver;
 using System;
 using System.Windows;
@@ -19,8 +20,8 @@ namespace Daves.WordamentPractice
                 return;
             }
 
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
+            var practiceView = new PracticeView();
+            practiceView.Show();
         }
     }
 }

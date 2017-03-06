@@ -26,7 +26,7 @@ using System.Diagnostics;
 
 namespace Daves.WordamentPractice
 {
-  public class Solver
+  public class Solvera
   {
     public static List<List<string>> RunSolver(string[] stringBoard, List<List<List<int>>> paths)
     {

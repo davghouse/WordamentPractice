@@ -1,7 +1,7 @@
 ﻿<Window 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:igWindows="http://infragistics.com/Windows" x:Name="Wordament_Practice" x:Class="Daves.WordamentPractice.MainWindow"
+        xmlns:igWindows="http://infragistics.com/Windows" x:Name="Wordament_Practice" x:Class="Daves.WordamentPractice.PracticeView2"
         Title="Wordament Practice" Height="618.862" Width="888.884" Background="{x:Null}" Foreground="{x:Null}" MouseLeftButtonDown="Window_CheckMouseLeftButtonState" MouseLeftButtonUp="Window_CheckMouseLeftButtonState" MouseEnter="Window_CheckMouseLeftButtonState" ResizeMode="CanMinimize">
   <Grid x:Name="Board" OpacityMask="Black" Margin="0,1,-11,1" HorizontalAlignment="Left" Width="894">
     <Grid.Background>

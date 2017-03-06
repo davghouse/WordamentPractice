@@ -25,7 +25,7 @@ namespace Daves.WordamentPractice
       {
         int a = path[i];
         int b = path[i + 1];
-        if (a + 1 == b || a - 1 == b || a + MainWindow.dim == b || a - MainWindow.dim == b)
+        if (a + 1 == b || a - 1 == b || a + PracticeView2.dim == b || a - PracticeView2.dim == b)
         {
           pathLength += 1;
         }
