@@ -43,6 +43,18 @@ namespace Daves.WordamentPractice.ViewModels
             int missingTileCount = TileViewModels.Count(tvm => string.IsNullOrWhiteSpace(tvm.String));
             for (int i = 0; i < missingTileCount * 2; ++i)
             {
+                foreach (var tileViewModel in TileViewModels
+                    .Where)
+                {
+                    if (string.IsNullOrWhiteSpace(tileViewModel.String))
+                    {
+                        int letterIndex = Array.IndexOf(_cumulativeLetterFrequencies,
+                            _cumulativeLetterFrequencies.First(f => f > rand.NextDouble() * 100));
+                        tileViewModel.String = ((char)('A' + letterIndex)).ToString();
+                    }
+                }
+
+
 
 
             }
@@ -70,9 +82,13 @@ namespace Daves.WordamentPractice.ViewModels
             => TileViewModels.ForEach(tvm => tvm.Clear());
 
         public Board GetBoard()
-            => new Board(4, 4,
+        {
+            var board = new Board(4, 4,
                 TileViewModels.Select(tvm => tvm.String),
                 TileViewModels.Select(tvm => tvm.Points));
+            board.GuessEmptyTilePoints();
+            return board;
+        }
 
         public Solution GetSolution()
             => new Solution(GetBoard());
