@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Daves.WordamentSolver;
+using GalaSoft.MvvmLight;
 
 namespace Daves.WordamentPractice.ViewModels
 {
@@ -8,7 +9,19 @@ namespace Daves.WordamentPractice.ViewModels
         public string String
         {
             get => _string;
-            set => Set(ref _string, value);
+            set
+            {
+                string previousValue = _string;
+
+                if (Set(ref _string, value))
+                {
+                    // If they were using the guess for the previous value, use the guess for the new value.
+                    if (Board.GuessTilePoints(previousValue) == Points)
+                    {
+                        Points = Board.GuessTilePoints(_string);
+                    }
+                }
+            }
         }
 
         private int? _points;
@@ -18,8 +31,9 @@ namespace Daves.WordamentPractice.ViewModels
             set => Set(ref _points, value);
         }
 
-        public bool IsEmpty
-            => string.IsNullOrWhiteSpace(String) && !Points.HasValue;
+        public bool HasString => !string.IsNullOrWhiteSpace(String);
+        public bool HasPoints => Points.HasValue;
+        public bool IsEmpty => !HasString && !HasPoints;
 
         public void Clear()
         {

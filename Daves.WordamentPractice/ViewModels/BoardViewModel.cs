@@ -7,24 +7,6 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class BoardViewModel
     {
-        private static readonly double[] _letterFrequencies = new[]
-        {
-            8.167, 1.492, 2.782, 4.253, 12.702, 2.228, 2.015, 6.094, 6.966, 0.153, 0.772, 4.025, 2.406,
-            6.749, 7.507, 1.929, 0.095, 5.987, 6.327, 9.056, 2.758, 0.978, 2.360, 0.150, 1.974, 0.074
-        };
-
-        private static readonly double[] _cumulativeLetterFrequencies = new double[26];
-
-        static BoardViewModel()
-        {
-            _cumulativeLetterFrequencies[0] = _letterFrequencies[0];
-            for (int i = 1; i < 25; ++i)
-            {
-                _cumulativeLetterFrequencies[i] = _letterFrequencies[i] + _cumulativeLetterFrequencies[i - 1];
-            }
-            _cumulativeLetterFrequencies[25] = 100;
-        }
-
         public BoardViewModel()
         {
             for (int i = 0; i < 16; ++i)
@@ -37,41 +19,39 @@ namespace Daves.WordamentPractice.ViewModels
 
         public void Populate()
         {
+            // Generate some random boards (4 times the number of tiles needing strings) and choose the best one.
             var rand = new Random();
-
-            Board bestBoard = GetBoard();
-            int missingTileCount = TileViewModels.Count(tvm => string.IsNullOrWhiteSpace(tvm.String));
-            for (int i = 0; i < missingTileCount * 2; ++i)
+            int bestWordsFound = GetSolution().WordsFound;
+            string[] originalTileStrings = TileViewModels
+                .Select(tvm => tvm.HasString ? tvm.String : null)
+                .ToArray();
+            string[] bestTileStrings = originalTileStrings.ToArray();
+            string[] trialTileStrings = originalTileStrings.ToArray();
+            int emptyTileStringCount = originalTileStrings.Count(s => s == null);
+            for (int i = 0; i < emptyTileStringCount * 4; ++i)
             {
-                foreach (var tileViewModel in TileViewModels
-                    .Where)
+                for (int t = 0; t < 16; ++t)
                 {
-                    if (string.IsNullOrWhiteSpace(tileViewModel.String))
-                    {
-                        int letterIndex = Array.IndexOf(_cumulativeLetterFrequencies,
-                            _cumulativeLetterFrequencies.First(f => f > rand.NextDouble() * 100));
-                        tileViewModel.String = ((char)('A' + letterIndex)).ToString();
-                    }
+                    if (originalTileStrings[t] != null) continue;
+
+                    trialTileStrings[t] = ((char)('A' + rand.Next(0, 26))).ToString();
                 }
 
+                var trialWordsFound = new Solution(
+                    new Board(4, 4, t => trialTileStrings[t], p => null))
+                    .WordsFound;
 
-
-
+                if (trialWordsFound > bestWordsFound)
+                {
+                    bestWordsFound = trialWordsFound;
+                    Array.Copy(trialTileStrings, bestTileStrings, 16);
+                }
             }
 
-            foreach (var tileViewModel in TileViewModels)
+            for (int t = 0; t < 16; ++t)
             {
-                if (string.IsNullOrWhiteSpace(tileViewModel.String))
-                {
-                    int letterIndex = Array.IndexOf(_cumulativeLetterFrequencies,
-                        _cumulativeLetterFrequencies.First(f => f > rand.NextDouble() * 100));
-                    tileViewModel.String = ((char)('A' + letterIndex)).ToString();
-                }
-
-                if (!tileViewModel.Points.HasValue)
-                {
-                    tileViewModel.Points = Board.GuessTilePoints(tileViewModel.String);
-                }
+                TileViewModels[t].String = bestTileStrings[t];
+                TileViewModels[t].Points = TileViewModels[t].Points ?? Board.GuessTilePoints(bestTileStrings[t]);
             }
         }
 
@@ -82,13 +62,9 @@ namespace Daves.WordamentPractice.ViewModels
             => TileViewModels.ForEach(tvm => tvm.Clear());
 
         public Board GetBoard()
-        {
-            var board = new Board(4, 4,
+            => new Board(4, 4,
                 TileViewModels.Select(tvm => tvm.String),
                 TileViewModels.Select(tvm => tvm.Points));
-            board.GuessEmptyTilePoints();
-            return board;
-        }
 
         public Solution GetSolution()
             => new Solution(GetBoard());

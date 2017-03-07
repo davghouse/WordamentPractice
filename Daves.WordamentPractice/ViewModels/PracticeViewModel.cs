@@ -2,10 +2,8 @@
 using Daves.WordamentSolver;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
-using MoreLinq;
 using System;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows.Input;
 
 namespace Daves.WordamentPractice.ViewModels
@@ -29,14 +27,14 @@ namespace Daves.WordamentPractice.ViewModels
 
         public BoardViewModel BoardViewModel { get; set; } = new BoardViewModel();
 
-        private string _pointsLabel;
+        private string _pointsLabel = "0 of 0 points";
         public string PointsLabel
         {
             get => _pointsLabel;
             set => Set(ref _pointsLabel, value);
         }
 
-        private string _wordsLabel;
+        private string _wordsLabel = "0 of 0 words";
         public string WordsLabel
         {
             get => _wordsLabel;
@@ -58,6 +56,8 @@ namespace Daves.WordamentPractice.ViewModels
             get => _pauseButtonContent;
             set => Set(ref _pauseButtonContent, value);
         }
+
+        private bool IsBeingPopulated { get; set; }
 
         private bool IsStarted { get; set; }
 
@@ -85,6 +85,8 @@ namespace Daves.WordamentPractice.ViewModels
             }
         }
 
+        public bool IsBeingCleared { get; set; }
+
         public ICommand StartCommand { get; }
 
         private bool CanExecuteStartCommand()
@@ -92,7 +94,10 @@ namespace Daves.WordamentPractice.ViewModels
 
         private void ExecuteStartCommand()
         {
+            IsBeingPopulated = true;
             BoardViewModel.Populate();
+            Solution = BoardViewModel.GetSolution();
+            IsBeingPopulated = false;
 
             IsStarted = true;
             _timer.Start();
@@ -137,11 +142,17 @@ namespace Daves.WordamentPractice.ViewModels
         private void ExecuteClearCommand()
         {
             ExecuteStopCommand();
+
+            IsBeingCleared = true;
             BoardViewModel.Clear();
+            Solution = BoardViewModel.GetSolution();
+            IsBeingCleared = false;
         }
 
         private void TileViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            if (IsBeingPopulated || IsBeingCleared) return;
+
             if (e.PropertyName.Equals(nameof(TileViewModel.String))
                 || e.PropertyName.Equals(nameof(TileViewModel.Points)))
             {
