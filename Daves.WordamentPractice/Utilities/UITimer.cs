@@ -25,7 +25,7 @@ namespace Daves.WordamentPractice.Utilities
         private void _timer_Tick(object sender, EventArgs e)
             => ++_intervalCount;
 
-        TimeSpan Elapsed
+        public TimeSpan Elapsed
             => TimeSpan.FromTicks(_intervalCount * _timer.Interval.Ticks);
 
         public void Start()

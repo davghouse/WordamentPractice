@@ -7,6 +7,11 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class BoardViewModel
     {
+        private static readonly string[] _viableLetters = new string[]
+        {
+            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V", "K"
+        };
+
         public BoardViewModel()
         {
             for (int i = 0; i < 16; ++i)
@@ -34,7 +39,7 @@ namespace Daves.WordamentPractice.ViewModels
                 {
                     if (originalTileStrings[t] != null) continue;
 
-                    trialTileStrings[t] = ((char)('A' + rand.Next(0, 26))).ToString();
+                    trialTileStrings[t] = _viableLetters[rand.Next(0, _viableLetters.Length)];
                 }
 
                 var trialWordsFound = new Solution(

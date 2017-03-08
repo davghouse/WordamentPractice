@@ -4,8 +4,7 @@
         xmlns:views="clr-namespace:Daves.WordamentPractice.Views"
         xmlns:viewModels="clr-namespace:Daves.WordamentPractice.ViewModels"
         Title="Wordament Practice"
-        Height="600" Width="850"
-        ResizeMode="CanMinimize">
+        Height="600" Width="895">
   <Window.DataContext>
     <viewModels:PracticeViewModel/>
   </Window.DataContext>
@@ -25,16 +24,24 @@
     </Style>
 
     <Style TargetType="Button">
+      <Setter Property="Margin" Value="5"/>
       <Setter Property="FontSize" Value="16"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="ListBox">
+      <Setter Property="Margin" Value="5"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="BorderBrush" Value="White"/>
+      <Setter Property="BorderThickness" Value="0,1.5,0,0"/>
     </Style>
   </Window.Resources>
 
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="440"/>
-      <ColumnDefinition/>
-      <ColumnDefinition/>
+      <ColumnDefinition Width="440"/>
     </Grid.ColumnDefinitions>
 
     <Grid Grid.Column="0">
@@ -52,35 +59,66 @@
       </Grid.ColumnDefinitions>
 
       <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-        <Label Content="{Binding Path=PointsLabel}"/>
-        <Label Content="{Binding Path=WordsLabel}"/>
+        <Label Content="{Binding PointsLabel}"/>
+        <Label Content="{Binding WordsLabel}"/>
       </StackPanel>
 
       <Label Grid.Row="0" Grid.Column="3"
-             Content="{Binding Path=TimerLabel}"
+             Content="{Binding TimerLabel}"
              FontSize="36" HorizontalAlignment="Right"/>
 
       <ContentControl Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Content="{Binding BoardViewModel}"/>
 
-      <Button Grid.Row="2" Grid.Column="0" Margin="5"
+      <Button Grid.Row="2" Grid.Column="0"
               Content="Start"
-              Command="{Binding Path=StartCommand}"/>
+              Command="{Binding StartCommand}"/>
 
-      <Button Grid.Row="2" Grid.Column="1" Margin="5"
-              Content="{Binding Path=PauseButtonContent}"
-              Command="{Binding Path=PauseCommand}"/>
+      <Button Grid.Row="2" Grid.Column="1"
+              Content="{Binding PauseButtonContent}"
+              Command="{Binding PauseCommand}"/>
 
-      <Button Grid.Row="2" Grid.Column="2" Margin="5"
+      <Button Grid.Row="2" Grid.Column="2"
               Content="Stop"
-              Command="{Binding Path=StopCommand}"/>
+              Command="{Binding StopCommand}"/>
 
-      <Button Grid.Row="2" Grid.Column="3" Margin="5"
+      <Button Grid.Row="2" Grid.Column="3"
               Content="Clear"
-              Command="{Binding Path=ClearCommand}"/>
+              Command="{Binding ClearCommand}"/>
     </Grid>
 
-    <Grid Grid.Column="1"/>
+    <Grid Grid.Column="1">
+      <Grid.RowDefinitions>
+        <RowDefinition/>
+        <RowDefinition Height="440"/>
+        <RowDefinition/>
+      </Grid.RowDefinitions>
 
-    <Grid Grid.Column="2"/>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+        <ColumnDefinition/>
+      </Grid.ColumnDefinitions>
+
+      <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+
+      <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
+        <Label Content="Order by:"/>
+
+        <ComboBox VerticalAlignment="Center" Margin="5"
+                  ItemsSource="{Binding WordSorters}"
+                  DisplayMemberPath="Name"
+                  SelectedItem="{Binding SelectedWordSorter}">
+        </ComboBox>
+      </StackPanel>
+
+      <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
+               ItemsSource="{Binding SolutionWords}">
+      </ListBox>
+
+      <Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"
+              Content="{Binding ShowSolutionButtonContent}"
+              Command="{Binding ShowSolutionCommand}"/>
+    </Grid>
   </Grid>
 </Window>

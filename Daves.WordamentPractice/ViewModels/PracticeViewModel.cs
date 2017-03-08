@@ -3,13 +3,19 @@ using Daves.WordamentSolver;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Daves.WordamentPractice.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
+        private bool IsStarted { get; set; }
+        private bool IsBeingPopulated { get; set; }
+        private bool IsBeingCleared { get; set; }
+
         public PracticeViewModel()
         {
             _timer = new UITimer(TimeSpan.FromSeconds(1), _timer_Tick);
@@ -18,10 +24,24 @@ namespace Daves.WordamentPractice.ViewModels
             PauseCommand = new RelayCommand(ExecutePauseCommand, CanExecutePauseCommand);
             StopCommand = new RelayCommand(ExecuteStopCommand, CanExecuteStopCommand);
             ClearCommand = new RelayCommand(ExecuteClearCommand, CanExecuteClearCommand);
+            ShowSolutionCommand = new RelayCommand(ExecuteShowSolutionCommand, CanExecuteShowSolutionCommand);
 
             foreach (var tileViewModel in BoardViewModel.TileViewModels)
             {
                 tileViewModel.PropertyChanged += TileViewModel_PropertyChanged;
+            }
+        }
+
+        public IReadOnlyList<WordSorter> WordSorters { get; } = WordSorter.All;
+
+        private WordSorter _selectedWordSorter;
+        public WordSorter SelectedWordSorter
+        {
+            get => _selectedWordSorter;
+            set
+            {
+                _selectedWordSorter = value;
+                
             }
         }
 
@@ -57,10 +77,6 @@ namespace Daves.WordamentPractice.ViewModels
             set => Set(ref _pauseButtonContent, value);
         }
 
-        private bool IsBeingPopulated { get; set; }
-
-        private bool IsStarted { get; set; }
-
         private bool _isPaused;
         private bool IsPaused
         {
@@ -82,10 +98,37 @@ namespace Daves.WordamentPractice.ViewModels
 
                 PointsLabel = $"0 of {_solution.TotalPoints} points";
                 WordsLabel = $"0 of {_solution.Words.Count} words";
+                SolutionWords = _solution.Words
+                    .Select(w => $"{w.Points}\t{w.String.ToLower()}")
+                    .ToArray();
             }
         }
 
-        public bool IsBeingCleared { get; set; }
+        private string _showSolutionButtonContent = "Show solution";
+        public string ShowSolutionButtonContent
+        {
+            get => _showSolutionButtonContent;
+            set => Set(ref _showSolutionButtonContent, value);
+        }
+
+        private bool _isShowingSolution;
+        private bool IsShowingSolution
+        {
+            get => _isShowingSolution;
+            set
+            {
+                _isShowingSolution = value;
+                ShowSolutionButtonContent = _isShowingSolution ? "Hide solution" : "Show solution";
+                RaisePropertyChanged(nameof(SolutionWords));
+            }
+        }
+
+        private IReadOnlyList<string> _solutionWords = new string[0];
+        public IReadOnlyList<string> SolutionWords
+        {
+            get => IsShowingSolution ? _solutionWords : null;
+            set => Set(ref _solutionWords, value);
+        }
 
         public ICommand StartCommand { get; }
 
@@ -148,6 +191,14 @@ namespace Daves.WordamentPractice.ViewModels
             Solution = BoardViewModel.GetSolution();
             IsBeingCleared = false;
         }
+
+        public ICommand ShowSolutionCommand { get; }
+
+        private bool CanExecuteShowSolutionCommand()
+            => true;
+
+        private void ExecuteShowSolutionCommand()
+            => IsShowingSolution = !IsShowingSolution;
 
         private void TileViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
