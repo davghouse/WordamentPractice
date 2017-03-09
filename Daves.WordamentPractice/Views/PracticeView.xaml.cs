@@ -1,5 +1,4 @@
 ﻿using System.Windows;
-using System.Windows.Controls;
 
 namespace Daves.WordamentPractice.Views
 {
@@ -7,6 +6,5 @@ namespace Daves.WordamentPractice.Views
     {
         public PracticeView()
             => InitializeComponent();
-
     }
 }

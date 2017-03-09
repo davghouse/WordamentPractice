@@ -24,7 +24,6 @@ namespace Daves.WordamentPractice.ViewModels
             PauseCommand = new RelayCommand(ExecutePauseCommand, CanExecutePauseCommand);
             StopCommand = new RelayCommand(ExecuteStopCommand, CanExecuteStopCommand);
             ClearCommand = new RelayCommand(ExecuteClearCommand, CanExecuteClearCommand);
-            ShowSolutionCommand = new RelayCommand(ExecuteShowSolutionCommand, CanExecuteShowSolutionCommand);
 
             foreach (var tileViewModel in BoardViewModel.TileViewModels)
             {
@@ -32,34 +31,7 @@ namespace Daves.WordamentPractice.ViewModels
             }
         }
 
-        public IReadOnlyList<WordSorter> WordSorters { get; } = WordSorter.All;
-
-        private WordSorter _selectedWordSorter;
-        public WordSorter SelectedWordSorter
-        {
-            get => _selectedWordSorter;
-            set
-            {
-                _selectedWordSorter = value;
-                
-            }
-        }
-
         public BoardViewModel BoardViewModel { get; set; } = new BoardViewModel();
-
-        private string _pointsLabel = "0 of 0 points";
-        public string PointsLabel
-        {
-            get => _pointsLabel;
-            set => Set(ref _pointsLabel, value);
-        }
-
-        private string _wordsLabel = "0 of 0 words";
-        public string WordsLabel
-        {
-            get => _wordsLabel;
-            set => Set(ref _wordsLabel, value);
-        }
 
         private UITimer _timer;
         private void _timer_Tick(object sender, EventArgs e) => TimerLabel = _timer.ToString();
@@ -88,46 +60,56 @@ namespace Daves.WordamentPractice.ViewModels
             }
         }
 
-        private Solution _solution;
+        private Solution _solution = new Solution();
         private Solution Solution
         {
             get => _solution;
             set
             {
-                _solution = value;
-
-                PointsLabel = $"0 of {_solution.TotalPoints} points";
-                WordsLabel = $"0 of {_solution.Words.Count} words";
-                SolutionWords = _solution.Words
-                    .Select(w => $"{w.Points}\t{w.String.ToLower()}")
-                    .ToArray();
+                if (Set(ref _solution, value))
+                {
+                    PointsLabel = $"0 of {_solution.TotalPoints} points";
+                    WordsLabel = $"0 of {_solution.WordsFound} words";
+                    SolutionWords = _solution.Words;
+                }
             }
         }
 
-        private string _showSolutionButtonContent = "Show solution";
-        public string ShowSolutionButtonContent
+        private string _pointsLabel = "0 of 0 points";
+        public string PointsLabel
         {
-            get => _showSolutionButtonContent;
-            set => Set(ref _showSolutionButtonContent, value);
+            get => _pointsLabel;
+            set => Set(ref _pointsLabel, value);
         }
 
-        private bool _isShowingSolution;
-        private bool IsShowingSolution
+        private string _wordsLabel = "0 of 0 words";
+        public string WordsLabel
         {
-            get => _isShowingSolution;
+            get => _wordsLabel;
+            set => Set(ref _wordsLabel, value);
+        }
+
+        private IReadOnlyList<Word> _solutionWords;
+        public IReadOnlyList<Word> SolutionWords
+        {
+            get => _solutionWords;
+            set => Set(ref _solutionWords, value);
+        }
+
+        public IReadOnlyList<WordSorter> WordSorters { get; } = WordSorter.All;
+
+        private WordSorter _selectedWordSorter;
+        public WordSorter SelectedWordSorter
+        {
+            get => _selectedWordSorter;
             set
             {
-                _isShowingSolution = value;
-                ShowSolutionButtonContent = _isShowingSolution ? "Hide solution" : "Show solution";
-                RaisePropertyChanged(nameof(SolutionWords));
+                if (Set(ref _selectedWordSorter, value) && _selectedWordSorter != null)
+                {
+                    Solution.SortWords(_selectedWordSorter);
+                    SolutionWords = Solution.Words.ToArray();
+                }
             }
-        }
-
-        private IReadOnlyList<string> _solutionWords = new string[0];
-        public IReadOnlyList<string> SolutionWords
-        {
-            get => IsShowingSolution ? _solutionWords : null;
-            set => Set(ref _solutionWords, value);
         }
 
         public ICommand StartCommand { get; }
@@ -139,7 +121,7 @@ namespace Daves.WordamentPractice.ViewModels
         {
             IsBeingPopulated = true;
             BoardViewModel.Populate();
-            Solution = BoardViewModel.GetSolution();
+            Solution = BoardViewModel.GetSolution(SelectedWordSorter);
             IsBeingPopulated = false;
 
             IsStarted = true;
@@ -188,17 +170,9 @@ namespace Daves.WordamentPractice.ViewModels
 
             IsBeingCleared = true;
             BoardViewModel.Clear();
-            Solution = BoardViewModel.GetSolution();
+            Solution = BoardViewModel.GetSolution(SelectedWordSorter);
             IsBeingCleared = false;
         }
-
-        public ICommand ShowSolutionCommand { get; }
-
-        private bool CanExecuteShowSolutionCommand()
-            => true;
-
-        private void ExecuteShowSolutionCommand()
-            => IsShowingSolution = !IsShowingSolution;
 
         private void TileViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -207,7 +181,7 @@ namespace Daves.WordamentPractice.ViewModels
             if (e.PropertyName.Equals(nameof(TileViewModel.String))
                 || e.PropertyName.Equals(nameof(TileViewModel.Points)))
             {
-                Solution = BoardViewModel.GetSolution();
+                Solution = BoardViewModel.GetSolution(SelectedWordSorter);
             }
         }
     }
