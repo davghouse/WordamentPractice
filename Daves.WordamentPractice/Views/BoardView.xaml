@@ -6,13 +6,7 @@
              xmlns:views="clr-namespace:Daves.WordamentPractice.Views"
              xmlns:viewModels="clr-namespace:Daves.WordamentPractice.ViewModels"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:BoardViewModel}">
-  <UserControl.Resources>
-    <DataTemplate DataType="{x:Type viewModels:TileViewModel}">
-      <views:TileView/>
-    </DataTemplate>
-  </UserControl.Resources>
-
-    <Grid Grid.Column="0">
+    <Grid Grid.Column="0" Name="TileGrid">
       <Grid.RowDefinitions>
         <RowDefinition/>
         <RowDefinition/>
@@ -27,21 +21,21 @@
         <ColumnDefinition/>
       </Grid.ColumnDefinitions>
 
-      <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding TileViewModels[0]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="0" Grid.Column="1" Content="{Binding TileViewModels[1]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="0" Grid.Column="2" Content="{Binding TileViewModels[2]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="0" Grid.Column="3" Content="{Binding TileViewModels[3]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding TileViewModels[4]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="1" Grid.Column="1" Content="{Binding TileViewModels[5]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="1" Grid.Column="2" Content="{Binding TileViewModels[6]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="1" Grid.Column="3" Content="{Binding TileViewModels[7]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="2" Grid.Column="0" Content="{Binding TileViewModels[8]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="2" Grid.Column="1" Content="{Binding TileViewModels[9]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="2" Grid.Column="2" Content="{Binding TileViewModels[10]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="2" Grid.Column="3" Content="{Binding TileViewModels[11]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="3" Grid.Column="0" Content="{Binding TileViewModels[12]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="3" Grid.Column="1" Content="{Binding TileViewModels[13]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="3" Grid.Column="2" Content="{Binding TileViewModels[14]}" IsTabStop="False"/>
-      <ContentControl Grid.Row="3" Grid.Column="3" Content="{Binding TileViewModels[15]}" IsTabStop="False"/>
+      <views:TileView Grid.Row="0" Grid.Column="0" DataContext="{Binding TileViewModels[0]}"/>
+      <views:TileView Grid.Row="0" Grid.Column="1" DataContext="{Binding TileViewModels[1]}"/>
+      <views:TileView Grid.Row="0" Grid.Column="2" DataContext="{Binding TileViewModels[2]}"/>
+      <views:TileView Grid.Row="0" Grid.Column="3" DataContext="{Binding TileViewModels[3]}"/>
+      <views:TileView Grid.Row="1" Grid.Column="0" DataContext="{Binding TileViewModels[4]}"/>
+      <views:TileView Grid.Row="1" Grid.Column="1" DataContext="{Binding TileViewModels[5]}"/>
+      <views:TileView Grid.Row="1" Grid.Column="2" DataContext="{Binding TileViewModels[6]}"/>
+      <views:TileView Grid.Row="1" Grid.Column="3" DataContext="{Binding TileViewModels[7]}"/>
+      <views:TileView Grid.Row="2" Grid.Column="0" DataContext="{Binding TileViewModels[8]}"/>
+      <views:TileView Grid.Row="2" Grid.Column="1" DataContext="{Binding TileViewModels[9]}"/>
+      <views:TileView Grid.Row="2" Grid.Column="2" DataContext="{Binding TileViewModels[10]}"/>
+      <views:TileView Grid.Row="2" Grid.Column="3" DataContext="{Binding TileViewModels[11]}"/>
+      <views:TileView Grid.Row="3" Grid.Column="0" DataContext="{Binding TileViewModels[12]}"/>
+      <views:TileView Grid.Row="3" Grid.Column="1" DataContext="{Binding TileViewModels[13]}"/>
+      <views:TileView Grid.Row="3" Grid.Column="2" DataContext="{Binding TileViewModels[14]}"/>
+      <views:TileView Grid.Row="3" Grid.Column="3" DataContext="{Binding TileViewModels[15]}"/>
     </Grid>
 </UserControl>

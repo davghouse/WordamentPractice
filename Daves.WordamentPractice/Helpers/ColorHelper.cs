@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Drawing;
+using System.Windows.Media;
 
 namespace Daves.WordamentPractice.Helpers
 {
@@ -24,9 +24,10 @@ namespace Daves.WordamentPractice.Helpers
             for (int s = 0; s < steps; ++s)
             {
                 yield return Color.FromArgb(
-                    start.R + (rDifference * s) / (steps - 1),
-                    start.G + (gDifference * s) / (steps - 1),
-                    start.B + (bDifference * s) / (steps - 1));
+                    255,
+                    (byte)(start.R + (rDifference * s) / (steps - 1)),
+                    (byte)(start.G + (gDifference * s) / (steps - 1)),
+                    (byte)(start.B + (bDifference * s) / (steps - 1)));
             }
         }
     }

@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -12,9 +11,8 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
-        private bool IsStarted { get; set; }
-        private bool IsBeingPopulated { get; set; }
-        private bool IsBeingCleared { get; set; }
+        private bool _isBeingPopulated;
+        private bool _isBeingCleared;
 
         public PracticeViewModel()
         {
@@ -27,11 +25,18 @@ namespace Daves.WordamentPractice.ViewModels
 
             foreach (var tileViewModel in BoardViewModel.TileViewModels)
             {
-                tileViewModel.PropertyChanged += TileViewModel_PropertyChanged;
+                tileViewModel.TileUpdated += TileViewModel_TileUpdated;
             }
         }
 
         public BoardViewModel BoardViewModel { get; set; } = new BoardViewModel();
+
+        private bool _isStarted;
+        public bool IsStarted
+        {
+            get => _isStarted;
+            set => Set(ref _isStarted, value);
+        }
 
         private UITimer _timer;
         private void _timer_Tick(object sender, EventArgs e) => TimerLabel = _timer.ToString();
@@ -42,51 +47,24 @@ namespace Daves.WordamentPractice.ViewModels
             set => Set(ref _timerLabel, value);
         }
 
-        private string _pauseButtonContent = "Pause";
-        public string PauseButtonContent
-        {
-            get => _pauseButtonContent;
-            set => Set(ref _pauseButtonContent, value);
-        }
-
         private bool _isPaused;
-        private bool IsPaused
+        public bool IsPaused
         {
             get => _isPaused;
-            set
-            {
-                _isPaused = value;
-                PauseButtonContent = _isPaused ? "Unpause" : "Pause";
-            }
+            private set => Set(ref _isPaused, value);
         }
 
         private Solution _solution = new Solution();
-        private Solution Solution
+        public Solution Solution
         {
             get => _solution;
             set
             {
                 if (Set(ref _solution, value))
                 {
-                    PointsLabel = $"0 of {_solution.TotalPoints} points";
-                    WordsLabel = $"0 of {_solution.WordsFound} words";
                     SolutionWords = _solution.Words;
                 }
             }
-        }
-
-        private string _pointsLabel = "0 of 0 points";
-        public string PointsLabel
-        {
-            get => _pointsLabel;
-            set => Set(ref _pointsLabel, value);
-        }
-
-        private string _wordsLabel = "0 of 0 words";
-        public string WordsLabel
-        {
-            get => _wordsLabel;
-            set => Set(ref _wordsLabel, value);
         }
 
         private IReadOnlyList<Word> _solutionWords;
@@ -98,7 +76,7 @@ namespace Daves.WordamentPractice.ViewModels
 
         public IReadOnlyList<WordSorter> WordSorters { get; } = WordSorter.All;
 
-        private WordSorter _selectedWordSorter;
+        private WordSorter _selectedWordSorter = WordSorter.Points;
         public WordSorter SelectedWordSorter
         {
             get => _selectedWordSorter;
@@ -112,6 +90,19 @@ namespace Daves.WordamentPractice.ViewModels
             }
         }
 
+        private Word _selectedWord;
+        public Word SelectedWord
+        {
+            get => _selectedWord;
+            set
+            {
+                if (Set(ref _selectedWord, value))
+                {
+                    BoardViewModel.SelectedPath = _selectedWord?.BestPath;
+                }
+            }
+        }
+
         public ICommand StartCommand { get; }
 
         private bool CanExecuteStartCommand()
@@ -119,10 +110,10 @@ namespace Daves.WordamentPractice.ViewModels
 
         private void ExecuteStartCommand()
         {
-            IsBeingPopulated = true;
+            _isBeingPopulated = true;
             BoardViewModel.Populate();
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
-            IsBeingPopulated = false;
+            _isBeingPopulated = false;
 
             IsStarted = true;
             _timer.Start();
@@ -168,21 +159,17 @@ namespace Daves.WordamentPractice.ViewModels
         {
             ExecuteStopCommand();
 
-            IsBeingCleared = true;
+            _isBeingCleared = true;
             BoardViewModel.Clear();
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
-            IsBeingCleared = false;
+            _isBeingCleared = false;
         }
 
-        private void TileViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        private void TileViewModel_TileUpdated()
         {
-            if (IsBeingPopulated || IsBeingCleared) return;
+            if (_isBeingPopulated || _isBeingCleared) return;
 
-            if (e.PropertyName.Equals(nameof(TileViewModel.String))
-                || e.PropertyName.Equals(nameof(TileViewModel.Points)))
-            {
-                Solution = BoardViewModel.GetSolution(SelectedWordSorter);
-            }
+            Solution = BoardViewModel.GetSolution(SelectedWordSorter);
         }
     }
 }

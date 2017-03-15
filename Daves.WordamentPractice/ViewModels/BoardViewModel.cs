@@ -1,20 +1,15 @@
 ﻿using Daves.WordamentSolver;
+using GalaSoft.MvvmLight;
 using MoreLinq;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 
 namespace Daves.WordamentPractice.ViewModels
 {
-    public class BoardViewModel
+    public class BoardViewModel : ViewModelBase
     {
-        private static int _boardGenerationQualityFactor = int.Parse(ConfigurationManager.AppSettings["BoardGenerationQualityFactor"] ?? "4");
-
-        private static readonly string[] _viableLetters = new string[]
-        {
-            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
-        };
-
         public BoardViewModel()
         {
             for (int i = 0; i < 16; ++i)
@@ -25,11 +20,18 @@ namespace Daves.WordamentPractice.ViewModels
 
         public TileViewModel[] TileViewModels { get; } = new TileViewModel[16];
 
+        private IReadOnlyList<Tile> _selectedPath;
+        public IReadOnlyList<Tile> SelectedPath
+        {
+            get => _selectedPath;
+            set => Set(ref _selectedPath, value);
+        }
+
         public void Populate()
         {
-            // Generate some random boards (4 times the number of tiles needing strings, by default) and choose the best one.
+            // Generate some random boards (6 times the number of tiles needing strings, by default) and choose the best one.
             var rand = new Random();
-            int bestWordsFound = GetSolution().WordsFound;
+            int mostWordsFound = GetTotalWords();
             string[] originalTileStrings = TileViewModels
                 .Select(tvm => tvm.HasString ? tvm.String : null)
                 .ToArray();
@@ -45,13 +47,10 @@ namespace Daves.WordamentPractice.ViewModels
                     trialTileStrings[t] = _viableLetters[rand.Next(0, _viableLetters.Length)];
                 }
 
-                var trialWordsFound = new Solution(
-                    new Board(4, 4, t => trialTileStrings[t], p => null))
-                    .WordsFound;
-
-                if (trialWordsFound > bestWordsFound)
+                int trialWordsFound = new SimpleSolution(new Board(4, 4, t => trialTileStrings[t], p => null)).TotalWords;
+                if (trialWordsFound > mostWordsFound)
                 {
-                    bestWordsFound = trialWordsFound;
+                    mostWordsFound = trialWordsFound;
                     Array.Copy(trialTileStrings, bestTileStrings, 16);
                 }
             }
@@ -76,5 +75,15 @@ namespace Daves.WordamentPractice.ViewModels
 
         public Solution GetSolution(WordSorter selectedWordSorter = null)
             => new Solution(GetBoard(), selectedWordSorter);
+
+        public int GetTotalWords()
+            => new SimpleSolution(GetBoard()).TotalWords;
+
+        private static int _boardGenerationQualityFactor = int.Parse(ConfigurationManager.AppSettings["BoardGenerationQualityFactor"] ?? "6");
+
+        private static readonly string[] _viableLetters = new string[]
+        {
+            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
+        };
     }
 }
