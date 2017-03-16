@@ -1,4 +1,5 @@
-﻿using Daves.WordamentPractice.Utilities;
+﻿using Daves.WordamentPractice.Helpers;
+using Daves.WordamentPractice.Utilities;
 using Daves.WordamentSolver;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
@@ -170,6 +171,43 @@ namespace Daves.WordamentPractice.ViewModels
             if (_isBeingPopulated || _isBeingCleared) return;
 
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
+        }
+
+        public void SaveToFile(string filePath)
+            => FileHelper.WriteAllLines(filePath,
+                BoardViewModel.TileViewModels.Select(t => t.String).Concat(
+                BoardViewModel.TileViewModels.Select(t => t.Points?.ToString())));
+
+        public void LoadFromFile(string filePath)
+        {
+            ExecuteStopCommand();
+
+            _isBeingPopulated = true;
+
+            string[] lines = FileHelper.ReadAllLines(filePath);
+            if (lines.Length < 16 * 2)
+                throw new FormatException($"{filePath} doesn't correctly define a board.");
+
+            for (int i = 0; i < 16; ++i)
+            {
+                BoardViewModel.TileViewModels[i].String = lines[i];
+            }
+
+            for (int i = 0; i < 16; ++i)
+            {
+                if (int.TryParse(lines[i + 16], out int points))
+                {
+                    BoardViewModel.TileViewModels[i].Points = points;
+                }
+                else
+                {
+                    BoardViewModel.TileViewModels[i].Points = null;
+                }
+            }
+
+            Solution = BoardViewModel.GetSolution(SelectedWordSorter);
+
+            _isBeingPopulated = false;
         }
     }
 }

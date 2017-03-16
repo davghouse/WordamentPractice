@@ -10,6 +10,11 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
+        private static readonly IReadOnlyList<string> _viableLetters = new string[]
+        {
+            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
+        };
+
         public BoardViewModel()
         {
             for (int i = 0; i < 16; ++i)
@@ -25,6 +30,21 @@ namespace Daves.WordamentPractice.ViewModels
         {
             get => _selectedPath;
             set => Set(ref _selectedPath, value);
+        }
+
+        private int _boardGenerationQualityFactor = int.Parse(ConfigurationManager.AppSettings["BoardGenerationQualityFactor"] ?? "6");
+        public int BoardGenerationQualityFactory
+        {
+            get => _boardGenerationQualityFactor;
+            set
+            {
+                if (Set(ref _boardGenerationQualityFactor, value))
+                {
+                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                    config.AppSettings.Settings["BoardGenerationQualityFactor"].Value = _boardGenerationQualityFactor.ToString();
+                    config.Save(ConfigurationSaveMode.Modified);
+                }
+            }
         }
 
         public void Populate()
@@ -44,7 +64,7 @@ namespace Daves.WordamentPractice.ViewModels
                 {
                     if (originalTileStrings[t] != null) continue;
 
-                    trialTileStrings[t] = _viableLetters[rand.Next(0, _viableLetters.Length)];
+                    trialTileStrings[t] = _viableLetters[rand.Next(0, _viableLetters.Count)];
                 }
 
                 int trialWordsFound = new SimpleSolution(new Board(4, 4, t => trialTileStrings[t], p => null)).TotalWords;
@@ -78,12 +98,5 @@ namespace Daves.WordamentPractice.ViewModels
 
         public int GetTotalWords()
             => new SimpleSolution(GetBoard()).TotalWords;
-
-        private static int _boardGenerationQualityFactor = int.Parse(ConfigurationManager.AppSettings["BoardGenerationQualityFactor"] ?? "6");
-
-        private static readonly string[] _viableLetters = new string[]
-        {
-            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
-        };
     }
 }

@@ -39,12 +39,12 @@
                  Text="{Binding String}" TextChanged="Tile_TextChanged_ResizeFontToFit"
                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                  FontSize="72" CharacterCasing="Upper"
-                 PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                 PreviewKeyDown="TextBox_PreviewKeyDown_MapKeysToTab"/>
 
         <TextBox Name="PointsTextBox" Grid.Row="0" Grid.Column="0"
                  Text="{Binding Points}"
                  FontSize="16" IsTabStop="False"
-                 PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                 PreviewKeyDown="TextBox_PreviewKeyDown_MapKeysToTab"/>
       </Grid>
     </Border>
   </Border>

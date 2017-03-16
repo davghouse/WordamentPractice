@@ -1,5 +1,6 @@
 ﻿using Daves.WordamentPractice.Helpers;
 using Daves.WordamentSolver;
+using MoreLinq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
@@ -35,29 +36,19 @@ namespace Daves.WordamentPractice.Views
         {
             if (HighlightedPath != null)
             {
-                var pathColorGradient = HighlightedPath.Zip(
-                    ColorHelper.GetColorGradient(Colors.LimeGreen, Colors.Firebrick, HighlightedPath.Count),
-                    (Tile, Color) => new { Tile, Color })
-                    .ToArray();
+                _tileViews.ForEach(v => v.SetBackgroundColors(Colors.Transparent));
 
-                for (int i = 0; i < _tileViews.Count; ++i)
+                Color[] colorGradient = ColorHelper
+                    .GetColorGradient(Colors.LimeGreen, Colors.Firebrick, HighlightedPath.Count)
+                    .ToArray();
+                for (int i = 0; i < HighlightedPath.Count; ++i)
                 {
-                    var brush = new SolidColorBrush(pathColorGradient.FirstOrDefault(a => a.Tile.Position == i)?.Color ?? Colors.Transparent);
-                    _tileViews[i].SquareBorder.Background
-                        = _tileViews[i].RoundBorder.Background
-                        = _tileViews[i].StringTextBox.Background
-                        = _tileViews[i].PointsTextBox.Background = brush;
+                    _tileViews[HighlightedPath[i].Position].SetBackgroundColors(colorGradient[i]);
                 }
             }
             else
             {
-                foreach (var tileView in _tileViews)
-                {
-                    tileView.SquareBorder.ClearValue(Border.BackgroundProperty);
-                    tileView.RoundBorder.ClearValue(Border.BackgroundProperty);
-                    tileView.StringTextBox.ClearValue(Border.BackgroundProperty);
-                    tileView.PointsTextBox.ClearValue(Border.BackgroundProperty);
-                }
+                _tileViews.ForEach(v => v.ResetBackgroundColors());
             }
         }
     }

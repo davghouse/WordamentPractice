@@ -102,6 +102,9 @@
     <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Utilities\UITimer.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
+    <Compile Include="Views\BoardGenerationQualityFactorDialog.xaml.cs">
+      <DependentUpon>BoardGenerationQualityFactorDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BoardView.xaml.cs">
       <DependentUpon>BoardView.xaml</DependentUpon>
     </Compile>
@@ -116,6 +119,10 @@
     </Compile>
     <Compile Include="WordamentRecursiveOOSolver.cs" />
     <Compile Include="WordPointPath.cs" />
+    <Page Include="Views\BoardGenerationQualityFactorDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\BoardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

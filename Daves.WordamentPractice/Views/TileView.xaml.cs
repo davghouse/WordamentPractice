@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Daves.WordamentPractice.Views
 {
@@ -20,7 +21,7 @@ namespace Daves.WordamentPractice.Views
         }
 
         // Making enter and space simulate a tab press, see http://stackoverflow.com/q/9025278/1676558.
-        private void TextBox_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void TextBox_PreviewKeyDown_MapKeysToTab(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Space)
             {
@@ -30,6 +31,20 @@ namespace Daves.WordamentPractice.Views
                 traversalRequest.Wrapped = true;
                 ((TextBox)sender).MoveFocus(traversalRequest);
             }
+        }
+
+        public void SetBackgroundColors(Color color)
+            => SquareBorder.Background
+            = RoundBorder.Background
+            = StringTextBox.Background
+            = PointsTextBox.Background = new SolidColorBrush(color);
+
+        public void ResetBackgroundColors()
+        {
+            SquareBorder.ClearValue(Border.BackgroundProperty);
+            RoundBorder.ClearValue(Border.BackgroundProperty);
+            StringTextBox.ClearValue(Border.BackgroundProperty);
+            PointsTextBox.ClearValue(Border.BackgroundProperty);
         }
     }
 }
