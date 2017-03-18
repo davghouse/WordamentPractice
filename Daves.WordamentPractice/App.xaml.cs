@@ -1,5 +1,4 @@
-﻿using Daves.WordamentPractice.Helpers;
-using Daves.WordamentPractice.Views;
+﻿using Daves.WordamentPractice.Views;
 using Daves.WordamentSolver;
 using System;
 using System.Windows;
@@ -12,7 +11,7 @@ namespace Daves.WordamentPractice
         {
             try
             {
-                Solution.SetDictionary(FileHelper.ReadDictionaryFile());
+                Solution.SetDictionary();
             }
             catch (Exception exception)
             {
