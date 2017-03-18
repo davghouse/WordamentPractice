@@ -1,9 +1,9 @@
-﻿using Daves.WordamentSolver;
+﻿using Daves.WordamentPractice.Properties;
+using Daves.WordamentSolver;
 using GalaSoft.MvvmLight;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 
 namespace Daves.WordamentPractice.ViewModels
@@ -32,18 +32,13 @@ namespace Daves.WordamentPractice.ViewModels
             set => Set(ref _selectedPath, value);
         }
 
-        private int _boardGenerationQualityFactor = int.Parse(ConfigurationManager.AppSettings["BoardGenerationQualityFactor"] ?? "6");
-        public int BoardGenerationQualityFactory
+        public int BoardGenerationQualityFactor
         {
-            get => _boardGenerationQualityFactor;
+            get => Settings.Default.BoardGenerationQualityFactor;
             set
             {
-                if (Set(ref _boardGenerationQualityFactor, value))
-                {
-                    Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                    config.AppSettings.Settings["BoardGenerationQualityFactor"].Value = _boardGenerationQualityFactor.ToString();
-                    config.Save(ConfigurationSaveMode.Modified);
-                }
+                Settings.Default.BoardGenerationQualityFactor = value;
+                Settings.Default.Save();
             }
         }
 
@@ -58,7 +53,7 @@ namespace Daves.WordamentPractice.ViewModels
             string[] bestTileStrings = originalTileStrings.ToArray();
             string[] trialTileStrings = originalTileStrings.ToArray();
             int emptyTileStringCount = originalTileStrings.Count(s => s == null);
-            for (int i = 0; i < emptyTileStringCount * _boardGenerationQualityFactor; ++i)
+            for (int i = 0; i < emptyTileStringCount * BoardGenerationQualityFactor; ++i)
             {
                 for (int t = 0; t < 16; ++t)
                 {

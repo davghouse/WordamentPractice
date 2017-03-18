@@ -1,10 +1,10 @@
-﻿using Daves.WordamentPractice.Helpers;
-using Daves.WordamentPractice.Utilities;
+﻿using Daves.WordamentPractice.Utilities;
 using Daves.WordamentSolver;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Input;
 
@@ -36,7 +36,7 @@ namespace Daves.WordamentPractice.ViewModels
         public bool IsStarted
         {
             get => _isStarted;
-            set => Set(ref _isStarted, value);
+            private set => Set(ref _isStarted, value);
         }
 
         private UITimer _timer;
@@ -45,7 +45,7 @@ namespace Daves.WordamentPractice.ViewModels
         public string TimerLabel
         {
             get => _timerLabel;
-            set => Set(ref _timerLabel, value);
+            private set => Set(ref _timerLabel, value);
         }
 
         private bool _isPaused;
@@ -59,7 +59,7 @@ namespace Daves.WordamentPractice.ViewModels
         public Solution Solution
         {
             get => _solution;
-            set
+            private set
             {
                 if (Set(ref _solution, value))
                 {
@@ -72,7 +72,7 @@ namespace Daves.WordamentPractice.ViewModels
         public IReadOnlyList<Word> SolutionWords
         {
             get => _solutionWords;
-            set => Set(ref _solutionWords, value);
+            private set => Set(ref _solutionWords, value);
         }
 
         public IReadOnlyList<WordSorter> WordSorters { get; } = WordSorter.All;
@@ -174,7 +174,7 @@ namespace Daves.WordamentPractice.ViewModels
         }
 
         public void SaveToFile(string filePath)
-            => FileHelper.WriteAllLines(filePath,
+            => File.WriteAllLines(filePath,
                 BoardViewModel.TileViewModels.Select(t => t.String).Concat(
                 BoardViewModel.TileViewModels.Select(t => t.Points?.ToString())));
 
@@ -184,7 +184,7 @@ namespace Daves.WordamentPractice.ViewModels
 
             _isBeingPopulated = true;
 
-            string[] lines = FileHelper.ReadAllLines(filePath);
+            string[] lines = File.ReadAllLines(filePath);
             if (lines.Length < 16 * 2)
                 throw new FormatException($"{filePath} doesn't correctly define a board.");
 

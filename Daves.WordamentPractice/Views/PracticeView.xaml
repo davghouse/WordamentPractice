@@ -140,7 +140,7 @@
         </StackPanel>
 
         <ListBox Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"
-                 SelectedItem="{Binding SelectedWord, Mode=OneWayToSource}">
+                 SelectedItem="{Binding SelectedWord}">
           <ListBox.Style>
             <Style TargetType="ListBox" BasedOn="{StaticResource {x:Type ListBox}}">
               <Setter Property="ItemsSource" Value="{x:Null}"/>

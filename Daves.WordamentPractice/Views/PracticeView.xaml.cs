@@ -46,11 +46,11 @@ namespace Daves.WordamentPractice.Views
 
         private void BoardGenerationQualityFactorMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new BoardGenerationQualityFactorDialog(_practiceViewModel.BoardViewModel.BoardGenerationQualityFactory);
+            var dialog = new BoardGenerationQualityFactorDialog(_practiceViewModel.BoardViewModel.BoardGenerationQualityFactor);
 
             if (dialog.ShowDialog() == true)
             {
-                _practiceViewModel.BoardViewModel.BoardGenerationQualityFactory = dialog.BoardGenerationQualityFactor;
+                _practiceViewModel.BoardViewModel.BoardGenerationQualityFactor = dialog.BoardGenerationQualityFactor;
             }
         }
     }

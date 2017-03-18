@@ -101,7 +101,6 @@
     <Compile Include="Converters\NegationConverter.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
-    <Compile Include="Helpers\FileHelper.cs" />
     <Compile Include="Utilities\UITimer.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
     <Compile Include="Views\BoardGenerationQualityFactorDialog.xaml.cs">
@@ -171,7 +170,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
