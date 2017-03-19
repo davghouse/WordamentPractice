@@ -5,9 +5,9 @@ Wordament-based desktop app for single-player practice.
 
 Latest release [here](https://github.com/davghouse/Daves.WordamentPractice/releases/tag/v2.0.0).
 
-![Solving](/Screenshots/Solving.PNG)
-![Showing](/Screenshots/Showing.PNG)
-![Wonderments](/Screenshots/Wonderments.PNG)
+![Solving](/Screenshots/Solving.png)
+![Showing](/Screenshots/Showing.png)
+![Wonderments](/Screenshots/Wonderments.png)
 
 Implementation
 --------------
