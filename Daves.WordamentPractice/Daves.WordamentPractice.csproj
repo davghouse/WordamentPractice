@@ -55,6 +55,9 @@
     <StartupObject>
     </StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\BigWIcon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Daves.WordamentSolver, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Daves.WordamentSolver.2.2.0\lib\net46\Daves.WordamentSolver.dll</HintPath>
