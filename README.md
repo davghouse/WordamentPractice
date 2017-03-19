@@ -29,3 +29,5 @@ To-do
 -----
 * Rotation
 * Sounds
+* Animated word highlighting (I tried, but couldn't get it good enough)
+* More responsive path building (Wordament's seems to understand the tile you're coming from, I just use circles to cut **all** the corners off)
