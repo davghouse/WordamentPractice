@@ -11,7 +11,7 @@ namespace Daves.WordamentPractice.Views
 {
     public partial class BoardView : UserControl
     {
-        private IReadOnlyList<TileView> _tileViews;
+        private readonly IReadOnlyList<TileView> _tileViews;
 
         public BoardView()
         {
@@ -26,17 +26,14 @@ namespace Daves.WordamentPractice.Views
         }
 
         public static readonly DependencyProperty HighlightedPathProperty =
-            DependencyProperty.Register(
-                "HighlightedPath",
-                typeof(IReadOnlyList<Tile>),
-                typeof(BoardView),
+            DependencyProperty.Register(nameof(HighlightedPath), typeof(IReadOnlyList<Tile>), typeof(BoardView),
                 new PropertyMetadata((d, e) => ((BoardView)d).OnHighlightedPathChanged()));
 
         private void OnHighlightedPathChanged()
         {
             if (HighlightedPath != null)
             {
-                _tileViews.ForEach(v => v.SetBackgroundColors(Colors.Transparent));
+                _tileViews.ForEach(v => v.SetColors(Colors.Transparent, Colors.White));
 
                 Color[] colorGradient = ColorHelper
                     .GetColorGradient(Colors.LimeGreen, Colors.Firebrick, HighlightedPath.Count)
@@ -48,7 +45,7 @@ namespace Daves.WordamentPractice.Views
             }
             else
             {
-                _tileViews.ForEach(v => v.ResetBackgroundColors());
+                _tileViews.ForEach(v => v.ResetColors());
             }
         }
     }

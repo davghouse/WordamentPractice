@@ -4,7 +4,9 @@
         xmlns:views="clr-namespace:Daves.WordamentPractice.Views"
         Icon="..\Resources\BigWIcon.ico"
         Title="Dave's Wordament Practice"
-        Height="610" Width="895">
+        Height="610" Width="895"
+        MouseLeftButtonUp="Window_MouseLeftButtonUp_TrySubmittingPath"
+        MouseEnter="Window_MouseEnter_TrySubmittingPath">
   <Window.Background>
     <ImageBrush ImageSource="..\Resources\WordamentBackground.PNG"/>
   </Window.Background>
@@ -34,16 +36,23 @@
       <Setter Property="BorderBrush" Value="White"/>
       <Setter Property="BorderThickness" Value="0,1,0,0"/>
     </Style>
+
+    <Style TargetType="views:TileView">
+      <Setter Property="views:TileView.Position" Value="{Binding Position}"/>
+      <EventSetter Event="MouseLeftButtonDown" Handler="TileView_MouseLeftButtonDown_TryBeginningPath"/>
+      <EventSetter Event="MouseEnteredInterior" Handler="TileView_MouseEnteredInterior_TryContinuingPath"/>
+    </Style>
+
   </Window.Resources>
 
   <DockPanel>
     <Menu DockPanel.Dock="Top" Background="Transparent">
       <MenuItem Header="_File" Foreground="White">
-        <MenuItem Header="_Save As..." Foreground="Black" Click="SaveAsMenuItem_Click"/>
-        <MenuItem Header="_Load" Foreground="Black" Click="LoadMenuItem_Click"/>
+        <MenuItem Header="_Save As..." Foreground="Black" Click="SaveAsMenuItem_Click_SaveBoardToFile"/>
+        <MenuItem Header="_Load" Foreground="Black" Click="LoadMenuItem_Click_LoadBoardFromFile"/>
       </MenuItem>
       <MenuItem Header="Settings" Foreground="White">
-        <MenuItem Header="Board Generation Quality Factor" Foreground="Black" Click="BoardGenerationQualityFactorMenuItem_Click"/>
+        <MenuItem Header="Board Generation Quality Factor" Foreground="Black" Click="BoardGenerationQualityFactorMenuItem_Click_ShowDialog"/>
       </MenuItem>
     </Menu>
 
@@ -68,14 +77,33 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-          <Label Content="{Binding Solution.TotalPoints}" ContentStringFormat="0 of {0} points"/>
-          <Label Content="{Binding Solution.TotalWords}" ContentStringFormat="0 of {0} words"/>
+          <Label>
+            <TextBlock>
+              <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} of {1} points">
+                  <Binding Path="TotalPointsFound" />
+                  <Binding Path="Solution.TotalPoints" />
+                </MultiBinding>
+              </TextBlock.Text>
+            </TextBlock>
+          </Label>
+
+          <Label>
+            <TextBlock>
+              <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0} of {1} words">
+                  <Binding Path="TotalWordsFound" />
+                  <Binding Path="Solution.TotalWords" />
+                </MultiBinding>
+              </TextBlock.Text>
+            </TextBlock>
+          </Label>
         </StackPanel>
 
         <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                VerticalAlignment="Bottom" HorizontalAlignment="Right"
                FontSize="20"
-               Content="{Binding SelectedWord.String}"/>
+               Content="{Binding WordLabel}"/>
 
         <Label Grid.Row="0" Grid.Column="3"
                Content="{Binding TimerLabel}"
@@ -83,8 +111,8 @@
 
         <views:BoardView x:Name="BoardView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
                          DataContext="{Binding BoardViewModel}"
-                         HighlightedPath="{Binding SelectedPath}"
-                         GotFocus="BoardView_GotFocus"/>
+                         HighlightedPath="{Binding HighlightedPath}"
+                         MouseEnter="BoardView_MouseEnter_ClearSelectedWords"/>
 
         <Button Grid.Row="2" Grid.Column="0"
                 Content="Start"
@@ -127,7 +155,9 @@
           <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+        <ListBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                 ItemsSource="{Binding FoundWordPaths}"
+                 SelectedItem="{Binding SelectedFoundWordPath}"/>
 
         <StackPanel Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2">
           <Label Content="Order by:"/>

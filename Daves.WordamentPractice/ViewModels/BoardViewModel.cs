@@ -10,26 +10,41 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class BoardViewModel : ViewModelBase
     {
-        private static readonly IReadOnlyList<string> _viableLetters = new string[]
-        {
-            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
-        };
-
         public BoardViewModel()
         {
+            var tileViewModels = new TileViewModel[16];
             for (int i = 0; i < 16; ++i)
             {
-                TileViewModels[i] = new TileViewModel();
+                tileViewModels[i] = new TileViewModel(i);
+                tileViewModels[i].TileUpdated += TileViewModel_TileUpdated_ClearBoardCache;
+            }
+            TileViewModels = tileViewModels;
+        }
+
+        public IReadOnlyList<TileViewModel> TileViewModels { get; }
+
+        private void TileViewModel_TileUpdated_ClearBoardCache() => _board = null;
+        private Board _board;
+        public Board Board
+        {
+            get
+            {
+                if (_board == null)
+                {
+                    _board = new Board(4, 4,
+                        TileViewModels.Select(tvm => tvm.String),
+                        TileViewModels.Select(tvm => tvm.Points));
+                }
+
+                return _board;
             }
         }
 
-        public TileViewModel[] TileViewModels { get; } = new TileViewModel[16];
-
-        private IReadOnlyList<Tile> _selectedPath;
-        public IReadOnlyList<Tile> SelectedPath
+        private IReadOnlyList<Tile> _highlightedPath;
+        public IReadOnlyList<Tile> HighlightedPath
         {
-            get => _selectedPath;
-            set => Set(ref _selectedPath, value);
+            get => _highlightedPath;
+            set => Set(ref _highlightedPath, value);
         }
 
         public int BoardGenerationQualityFactor
@@ -41,6 +56,11 @@ namespace Daves.WordamentPractice.ViewModels
                 Settings.Default.Save();
             }
         }
+
+        private static readonly IReadOnlyList<string> _viableLetters = new string[]
+        {
+            "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
+        };
 
         public void Populate()
         {
@@ -83,15 +103,10 @@ namespace Daves.WordamentPractice.ViewModels
         public void Clear()
             => TileViewModels.ForEach(tvm => tvm.Clear());
 
-        public Board GetBoard()
-            => new Board(4, 4,
-                TileViewModels.Select(tvm => tvm.String),
-                TileViewModels.Select(tvm => tvm.Points));
-
         public Solution GetSolution(WordSorter selectedWordSorter = null)
-            => new Solution(GetBoard(), selectedWordSorter);
+            => new Solution(Board, selectedWordSorter);
 
         public int GetTotalWords()
-            => new SimpleSolution(GetBoard()).TotalWords;
+            => new SimpleSolution(Board).TotalWords;
     }
 }

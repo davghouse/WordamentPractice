@@ -2,9 +2,10 @@
 using Daves.WordamentSolver;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.CommandWpf;
+using MoreLinq;
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 
@@ -17,7 +18,7 @@ namespace Daves.WordamentPractice.ViewModels
 
         public PracticeViewModel()
         {
-            _timer = new UITimer(TimeSpan.FromSeconds(1), _timer_Tick);
+            _timer = new UITimer(TimeSpan.FromSeconds(1), _timer_Tick_UpdateTimerLabel);
 
             StartCommand = new RelayCommand(ExecuteStartCommand, CanExecuteStartCommand);
             PauseCommand = new RelayCommand(ExecutePauseCommand, CanExecutePauseCommand);
@@ -26,7 +27,7 @@ namespace Daves.WordamentPractice.ViewModels
 
             foreach (var tileViewModel in BoardViewModel.TileViewModels)
             {
-                tileViewModel.TileUpdated += TileViewModel_TileUpdated;
+                tileViewModel.TileUpdated += TileViewModel_TileUpdated_ConsiderRecalculatingSolution;
             }
         }
 
@@ -40,7 +41,7 @@ namespace Daves.WordamentPractice.ViewModels
         }
 
         private UITimer _timer;
-        private void _timer_Tick(object sender, EventArgs e) => TimerLabel = _timer.ToString();
+        private void _timer_Tick_UpdateTimerLabel(object sender, EventArgs e) => TimerLabel = _timer.ToString();
         private string _timerLabel = "0:00";
         public string TimerLabel
         {
@@ -99,9 +100,58 @@ namespace Daves.WordamentPractice.ViewModels
             {
                 if (Set(ref _selectedWord, value))
                 {
-                    BoardViewModel.SelectedPath = _selectedWord?.BestPath;
+                    WordLabel = _selectedWord?.String;
+                    BoardViewModel.HighlightedPath = _selectedWord?.BestPath;
                 }
             }
+        }
+
+        private HashSet<Word> _foundWords = new HashSet<Word>();
+        public ObservableCollection<WordPath> FoundWordPaths { get; } = new ObservableCollection<WordPath>();
+
+        private WordPath _selectedFoundWordPath;
+        public WordPath SelectedFoundWordPath
+        {
+            get => _selectedFoundWordPath;
+            set
+            {
+                if (Set(ref _selectedFoundWordPath, value))
+                {
+                    WordLabel = _selectedFoundWordPath?.Word.String;
+                    BoardViewModel.HighlightedPath = _selectedFoundWordPath?.Path;
+                }
+            }
+        }
+
+        private string _wordLabel;
+        public string WordLabel
+        {
+            get => _wordLabel;
+            set => Set(ref _wordLabel, value);
+        }
+
+        private int _totalPointsFound;
+        public int TotalPointsFound
+        {
+            get => _totalPointsFound;
+            set => Set(ref _totalPointsFound, value);
+        }
+
+        private int _totalWordsFound;
+        public int TotalWordsFound
+        {
+            get => _totalWordsFound;
+            set => Set(ref _totalWordsFound, value);
+        }
+
+        private void Reset()
+        {
+            IsPaused = IsStarted = false;
+            _timer.Stop();
+            _foundWords.Clear();
+            FoundWordPaths.Clear();
+            TotalPointsFound = 0;
+            TotalWordsFound = 0;
         }
 
         public ICommand StartCommand { get; }
@@ -111,6 +161,8 @@ namespace Daves.WordamentPractice.ViewModels
 
         private void ExecuteStartCommand()
         {
+            Reset();
+
             _isBeingPopulated = true;
             BoardViewModel.Populate();
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
@@ -144,11 +196,11 @@ namespace Daves.WordamentPractice.ViewModels
         private bool CanExecuteStopCommand()
             => IsStarted;
 
+        // Stop the clock but leave the found words intact so the user can look over their results.
         private void ExecuteStopCommand()
         {
-            IsPaused = false;
-            IsStarted = false;
-            _timer.Stop();
+            IsPaused = IsStarted = false;
+            _timer.Pause();
         }
 
         public ICommand ClearCommand { get; }
@@ -158,7 +210,7 @@ namespace Daves.WordamentPractice.ViewModels
 
         private void ExecuteClearCommand()
         {
-            ExecuteStopCommand();
+            Reset();
 
             _isBeingCleared = true;
             BoardViewModel.Clear();
@@ -166,25 +218,50 @@ namespace Daves.WordamentPractice.ViewModels
             _isBeingCleared = false;
         }
 
-        private void TileViewModel_TileUpdated()
+        private void TileViewModel_TileUpdated_ConsiderRecalculatingSolution()
         {
             if (_isBeingPopulated || _isBeingCleared) return;
+
+            Reset();
 
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
         }
 
+        public PathSubmissionStatus SubmitPath(IReadOnlyList<Tile> tilePath)
+        {
+            var status = PathSubmissionStatus.NoWordsFound;
+            if (Solution.TryGetPath(tilePath, out Path path))
+            {
+                status = PathSubmissionStatus.OldWordsFound;
+                foreach (var word in path.Words)
+                {
+                    if (_foundWords.Add(word))
+                    {
+                        status = PathSubmissionStatus.NewWordsFound;
+                        var wordPath = new WordPath(word, path);
+                        TotalPointsFound += wordPath.Points;
+                        // This sucks, but there's no free & easy way to display in reversed order if we Add instead.
+                        FoundWordPaths.Insert(0, wordPath);
+                        ++TotalWordsFound;
+                    }
+                }
+            }
+
+            return status;
+        }
+
         public void SaveToFile(string filePath)
-            => File.WriteAllLines(filePath,
+            => System.IO.File.WriteAllLines(filePath,
                 BoardViewModel.TileViewModels.Select(t => t.String).Concat(
                 BoardViewModel.TileViewModels.Select(t => t.Points?.ToString())));
 
         public void LoadFromFile(string filePath)
         {
-            ExecuteStopCommand();
+            Reset();
 
             _isBeingPopulated = true;
 
-            string[] lines = File.ReadAllLines(filePath);
+            string[] lines = System.IO.File.ReadAllLines(filePath);
             if (lines.Length < 16 * 2)
                 throw new FormatException($"{filePath} doesn't correctly define a board.");
 

@@ -6,7 +6,12 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class TileViewModel : ViewModelBase
     {
-        private bool _raiseTileUpdated = true;
+        public TileViewModel(int position)
+            => Position = position;
+
+        public int Position { get; }
+
+        private bool _shouldRaiseTileUpdated = true;
         public event Action TileUpdated;
 
         private string _string;
@@ -23,9 +28,9 @@ namespace Daves.WordamentPractice.ViewModels
                     // tile updated event so we're sure to only signal once for a simultaneous change (performance concern).
                     if (Board.GuessTilePoints(previousString) == Points)
                     {
-                        _raiseTileUpdated = false;
+                        _shouldRaiseTileUpdated = false;
                         Points = Board.GuessTilePoints(_string);
-                        _raiseTileUpdated = true;
+                        _shouldRaiseTileUpdated = true;
                     }
 
                     TileUpdated();
@@ -39,7 +44,7 @@ namespace Daves.WordamentPractice.ViewModels
             get => _points;
             set
             {
-                if (Set(ref _points, value) && _raiseTileUpdated)
+                if (Set(ref _points, value) && _shouldRaiseTileUpdated)
                 {
                     TileUpdated();
                 }

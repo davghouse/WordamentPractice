@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:converters="clr-namespace:Daves.WordamentPractice.Converters"
+             xmlns:views="clr-namespace:Daves.WordamentPractice.Views"
              xmlns:viewModels="clr-namespace:Daves.WordamentPractice.ViewModels"
+             xmlns:converters="clr-namespace:Daves.WordamentPractice.Converters"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:TileViewModel}">
   <UserControl.Resources>
     <converters:NegationConverter x:Key="negationConverter"/>
@@ -12,16 +13,21 @@
     <Style TargetType="TextBox">
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Foreground" Value="White"/>
-      <Setter Property="Background" Value="DarkOrange"/>
+      <Setter Property="Background" Value="{StaticResource OrangeishTileBrush}"/>
       <Setter Property="IsHitTestVisible"
-              Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}},
+              Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}},
                               Converter={StaticResource negationConverter},
                               Path=DataContext.IsStarted}"/>
     </Style>
+
+    <Style TargetType="Border">
+      <Setter Property="Background" Value="{StaticResource OrangeishTileBrush}"/>
+    </Style>
   </UserControl.Resources>
 
-  <Border Name="SquareBorder" Margin="5" Background="DarkOrange">
-    <Border Name="RoundBorder" CornerRadius="50" Margin="1" Background="DarkOrange">
+  <Border Name="SquareBorder" Margin="5">
+    <Border Name="RoundBorder" CornerRadius="50" Margin=".5"
+            MouseEnter="RoundBorder_MouseEnter_RaiseMouseEnteredInterior">
       <Grid>
         <Grid.RowDefinitions>
           <RowDefinition Height="*"/>
