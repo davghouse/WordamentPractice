@@ -1,23 +1,31 @@
 Dave's Wordament Practice
 ==================
 
-(English) Wordament-based desktop app for single-player practice. I think you need .NET 4.5 for this to run. 
+Wordament-based desktop app for single-player practice.
 
-Latest release [here](https://github.com/davghouse/Daves.WordamentPractice/releases/tag/v1.0.0). I'm working on this as an introduction to C#/.NET/WPF/XAML. In retrospect this was pretty useless because I used WPF in the same way I'd been using WinForms. I just handled events in the code-behind and didn't get experience with MVVM, data binding, triggers, templates... XAML in general.
+Latest release [here](https://github.com/davghouse/Daves.WordamentPractice/releases/tag/v2.0.0).
 
-![one](/Screenshots/1.PNG)
-![two](/Screenshots/2.PNG)
-![three](/Screenshots/3.PNG)
+![Solving](/Screenshots/Solving.PNG)
+![Showing](/Screenshots/Showing.PNG)
+![Wonderments](/Screenshots/Wonderments.PNG)
 
-Use
----
-* Right now I'm entering boards from Wordament and playing on them when I want to practice. Pressing Start without all the tile strings entered will randomly fill the remaining empty tiles with single letters. Pressing Start with full tile strings will guess at any point values that haven't been filled in. These guesses are only correct all the time (I think) for basic single-letter tiles. (See [here](https://github.com/davghouse/wordament-solver#limitations) for more information on limitations.)
+Implementation
+--------------
+For details about how a board's solution is built, see [my solver library](https://github.com/davghouse/Daves.WordamentSolver), whose NuGet package I reference in this project.
+
+I'm using this project to learn some WPF and MVVM. Through data binding the solution updates instantly when any changes to the board are made.
+I think I've achieved pretty good MVVM-ness, but the PracticeView.xaml.cs probably has some handling that could be refactored into a view model.
+
+When the game is started, the board generation quality factor controls how much work is done to generate a decent board.
+It's configurable through the Settings menu and the default is 6.
+In the default case, (6 * the number of empty tiles) boards are randomly generated (excluding tiles with Z, Q, X, and J) and solved.
+The board with the most words is chosen to play on.
+This is about as naive as it gets, but the solver is fast enough to make it a viable strategy, yielding boards of comparable density to those I see on Wordament.
+
+The found path for a word is displayed when selecting an item in the found list, the best path for a word is displayed when selecting an item in the solution list.
+All words for a path are granted when a path is traversed. None of this really matters unless you have a crazy board like the last one pictured.
 
 To-do
 -----
-* Good (common-word-dense) board generation
 * Rotation
-* A dictionary with 16-letter words
-* Tabbing with space and enter
 * Sounds
-
