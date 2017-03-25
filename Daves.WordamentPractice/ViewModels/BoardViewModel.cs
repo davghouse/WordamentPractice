@@ -4,7 +4,10 @@ using GalaSoft.MvvmLight;
 using MoreLinq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Daves.WordamentPractice.ViewModels
 {
@@ -62,7 +65,7 @@ namespace Daves.WordamentPractice.ViewModels
             "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
         };
 
-        public void Populate()
+        public async Task PopulateAsync(IProgress<string> progressUpdater)
         {
             // Generate some random boards (6 times the number of tiles needing strings, by default) and choose the best one.
             var rand = new Random();
@@ -73,28 +76,45 @@ namespace Daves.WordamentPractice.ViewModels
             string[] bestTileStrings = originalTileStrings.ToArray();
             string[] trialTileStrings = originalTileStrings.ToArray();
             int emptyTileStringCount = originalTileStrings.Count(s => s == null);
-            for (int i = 0; i < emptyTileStringCount * BoardGenerationQualityFactor; ++i)
+            int boardGenerationCount = emptyTileStringCount * BoardGenerationQualityFactor;
+
+            await Task.Run(() =>
             {
-                for (int t = 0; t < 16; ++t)
-                {
-                    if (originalTileStrings[t] != null) continue;
+                var stopwatch = Stopwatch.StartNew();
 
-                    trialTileStrings[t] = _viableLetters[rand.Next(0, _viableLetters.Count)];
+                for (int i = 0; i < boardGenerationCount; ++i)
+                {
+                    if (i % 10 == 0 && stopwatch.ElapsedMilliseconds > 250)
+                    {
+                        progressUpdater.Report($"{100 * i / (double)boardGenerationCount:0.00}% complete...");
+                    }
+
+                    for (int t = 0; t < 16; ++t)
+                    {
+                        if (originalTileStrings[t] != null) continue;
+
+                        trialTileStrings[t] = _viableLetters[rand.Next(0, _viableLetters.Count)];
+                    }
+
+                    int trialWordsFound = new SimpleSolution(new Board(4, 4, t => trialTileStrings[t], p => null)).TotalWords;
+                    if (trialWordsFound > mostWordsFound)
+                    {
+                        mostWordsFound = trialWordsFound;
+                        Array.Copy(trialTileStrings, bestTileStrings, 16);
+                    }
                 }
 
-                int trialWordsFound = new SimpleSolution(new Board(4, 4, t => trialTileStrings[t], p => null)).TotalWords;
-                if (trialWordsFound > mostWordsFound)
-                {
-                    mostWordsFound = trialWordsFound;
-                    Array.Copy(trialTileStrings, bestTileStrings, 16);
-                }
-            }
+                progressUpdater.Report(string.Empty);
+            });
 
             for (int t = 0; t < 16; ++t)
             {
                 TileViewModels[t].String = bestTileStrings[t];
                 TileViewModels[t].Points = TileViewModels[t].Points ?? Board.GuessTilePoints(bestTileStrings[t]);
             }
+
+            // http://stackoverflow.com/a/2764022/1676558
+            CommandManager.InvalidateRequerySuggested();
         }
 
         public bool IsEmpty

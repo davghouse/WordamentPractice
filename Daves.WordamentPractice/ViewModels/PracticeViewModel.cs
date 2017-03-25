@@ -13,9 +13,6 @@ namespace Daves.WordamentPractice.ViewModels
 {
     public class PracticeViewModel : ViewModelBase
     {
-        private bool _isBeingPopulated;
-        private bool _isBeingCleared;
-
         public PracticeViewModel()
         {
             _timer = new UITimer(TimeSpan.FromSeconds(1), _timer_Tick_UpdateTimerLabel);
@@ -38,6 +35,20 @@ namespace Daves.WordamentPractice.ViewModels
         {
             get => _isStarted;
             private set => Set(ref _isStarted, value);
+        }
+
+        private bool _isBeingPopulated;
+        public bool IsBeingPopulated
+        {
+            get => _isBeingPopulated;
+            private set => Set(ref _isBeingPopulated, value);
+        }
+
+        private bool _isBeingCleared;
+        private bool IsBeingCleared
+        {
+            get => _isBeingCleared;
+            set => Set(ref _isBeingCleared, value);
         }
 
         private UITimer _timer;
@@ -157,16 +168,16 @@ namespace Daves.WordamentPractice.ViewModels
         public ICommand StartCommand { get; }
 
         private bool CanExecuteStartCommand()
-            => !IsStarted;
+            => !(IsStarted || IsBeingPopulated);
 
-        private void ExecuteStartCommand()
+        private async void ExecuteStartCommand()
         {
             Reset();
 
-            _isBeingPopulated = true;
-            BoardViewModel.Populate();
+            IsBeingPopulated = true;
+            await BoardViewModel.PopulateAsync(new Progress<string>(p => WordLabel = p));
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
-            _isBeingPopulated = false;
+            IsBeingPopulated = false;
 
             IsStarted = true;
             _timer.Start();
@@ -206,21 +217,21 @@ namespace Daves.WordamentPractice.ViewModels
         public ICommand ClearCommand { get; }
 
         private bool CanExecuteClearCommand()
-            => !BoardViewModel.IsEmpty;
+            => !BoardViewModel.IsEmpty && !IsBeingPopulated;
 
         private void ExecuteClearCommand()
         {
             Reset();
 
-            _isBeingCleared = true;
+            IsBeingCleared = true;
             BoardViewModel.Clear();
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
-            _isBeingCleared = false;
+            IsBeingCleared = false;
         }
 
         private void TileViewModel_TileUpdated_ConsiderRecalculatingSolution()
         {
-            if (_isBeingPopulated || _isBeingCleared) return;
+            if (IsBeingPopulated || IsBeingCleared) return;
 
             Reset();
 
@@ -259,7 +270,7 @@ namespace Daves.WordamentPractice.ViewModels
         {
             Reset();
 
-            _isBeingPopulated = true;
+            IsBeingPopulated = true;
 
             string[] lines = System.IO.File.ReadAllLines(filePath);
             if (lines.Length < 16 * 2)
@@ -284,7 +295,7 @@ namespace Daves.WordamentPractice.ViewModels
 
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
 
-            _isBeingPopulated = false;
+            IsBeingPopulated = false;
         }
     }
 }

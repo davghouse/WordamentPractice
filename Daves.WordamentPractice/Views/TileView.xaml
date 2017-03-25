@@ -8,16 +8,22 @@
              xmlns:converters="clr-namespace:Daves.WordamentPractice.Converters"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:TileViewModel}">
   <UserControl.Resources>
-    <converters:NegationConverter x:Key="negationConverter"/>
+    <converters:IsTileHitTestVisibleConverter x:Key="isTileHitTestVisibleConverter"/>
 
     <Style TargetType="TextBox">
       <Setter Property="BorderThickness" Value="0"/>
       <Setter Property="Foreground" Value="White"/>
       <Setter Property="Background" Value="{StaticResource OrangeishTileBrush}"/>
-      <Setter Property="IsHitTestVisible"
-              Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}},
-                              Converter={StaticResource negationConverter},
-                              Path=DataContext.IsStarted}"/>
+      <Setter Property="IsHitTestVisible">
+        <Setter.Value>
+          <MultiBinding Converter="{StaticResource isTileHitTestVisibleConverter}">
+            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}}"
+                     Path="DataContext.IsStarted"/>
+            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}}"
+                     Path="DataContext.IsBeingPopulated"/>
+          </MultiBinding>
+        </Setter.Value>
+      </Setter>
     </Style>
 
     <Style TargetType="Border">

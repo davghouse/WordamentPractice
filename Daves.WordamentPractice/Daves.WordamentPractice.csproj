@@ -101,7 +101,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Converters\NegationConverter.cs" />
+    <Compile Include="Converters\IsTileHitTestVisibleConverter.cs" />
     <Compile Include="Helpers\ColorHelper.cs" />
     <Compile Include="Utilities\UITimer.cs" />
     <Compile Include="ViewModels\BoardViewModel.cs" />
