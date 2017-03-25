@@ -48,10 +48,10 @@
     <Menu DockPanel.Dock="Top" Background="Transparent">
       <MenuItem Header="_File" Foreground="White">
         <MenuItem Header="_Save As..." Foreground="Black" Click="SaveAsMenuItem_Click_SaveBoardToFile"/>
-        <MenuItem Header="_Load" Foreground="Black" Click="LoadMenuItem_Click_LoadBoardFromFile"/>
+        <MenuItem Header="_Load..." Foreground="Black" Click="LoadMenuItem_Click_LoadBoardFromFile"/>
       </MenuItem>
-      <MenuItem Header="Settings" Foreground="White">
-        <MenuItem Header="Board Generation Quality Factor" Foreground="Black" Click="BoardGenerationQualityFactorMenuItem_Click_ShowDialog"/>
+      <MenuItem Header="_Settings" Foreground="White">
+        <MenuItem Header="_Board Generation Quality Factor..." Foreground="Black" Click="BoardGenerationQualityFactorMenuItem_Click_ShowDialog"/>
       </MenuItem>
     </Menu>
 
