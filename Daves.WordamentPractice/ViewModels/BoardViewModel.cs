@@ -64,7 +64,7 @@ namespace Daves.WordamentPractice.ViewModels
             "E", "T", "A", "O", "I", "N", "S", "H", "R", "D", "L", "C", "U", "M", "W", "F", "G", "Y", "P", "B", "V"
         };
 
-        public async Task PopulateAsync(IProgress<string> progressUpdater)
+        public async Task PopulateAsync(Action<string> progressUpdater)
         {
             // Generate some random boards (6 times the number of tiles needing strings, by default) and choose the best one.
             var rand = new Random();
@@ -85,7 +85,7 @@ namespace Daves.WordamentPractice.ViewModels
                 {
                     if (i % 10 == 0 && stopwatch.ElapsedMilliseconds > 250)
                     {
-                        progressUpdater.Report($"{100 * i / (double)boardGenerationCount:0.00}% complete...");
+                        progressUpdater($"{100 * i / (double)boardGenerationCount:0.00}% complete...");
                     }
 
                     for (int t = 0; t < 16; ++t)
@@ -103,7 +103,7 @@ namespace Daves.WordamentPractice.ViewModels
                     }
                 }
 
-                progressUpdater.Report(string.Empty);
+                progressUpdater(string.Empty);
             });
 
             for (int t = 0; t < 16; ++t)

@@ -172,7 +172,7 @@ namespace Daves.WordamentPractice.ViewModels
             Reset();
 
             IsBeingPopulated = true;
-            await BoardViewModel.PopulateAsync(new Progress<string>(p => WordLabel = p));
+            await BoardViewModel.PopulateAsync(p => WordLabel = p);
             Solution = BoardViewModel.GetSolution(SelectedWordSorter);
             IsBeingPopulated = false;
 
