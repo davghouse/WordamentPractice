@@ -3,7 +3,7 @@ Dave's Wordament Practice
 
 Wordament-based desktop app for single-player practice.
 
-Latest release [here](https://github.com/davghouse/Daves.WordamentPractice/releases/tag/v2.1.0).
+Latest release [here](https://github.com/davghouse/Daves.WordamentPractice/releases/tag/v2.1.1).
 
 ![Solving](/Screenshots/Solving.png)
 ![Showing](/Screenshots/Showing.png)
