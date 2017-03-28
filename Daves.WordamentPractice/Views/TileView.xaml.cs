@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -43,8 +42,6 @@ namespace Daves.WordamentPractice.Views
                 ((TextBox)sender).MoveFocus(traversalRequest);
             }
         }
-
-        private List<SolidColorBrush> mylist = new List<SolidColorBrush>();
 
         public void SetBackgroundColors(Color color) => SetBackgroundColors(new SolidColorBrush(color));
         public void SetBackgroundColors(SolidColorBrush brush)

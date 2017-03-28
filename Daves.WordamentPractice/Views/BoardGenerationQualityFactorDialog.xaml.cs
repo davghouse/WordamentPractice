@@ -4,7 +4,7 @@ namespace Daves.WordamentPractice.Views
 {
     public partial class BoardGenerationQualityFactorDialog : Window
     {
-        private int _originalboardGenerationQualityFactor;
+        private readonly int _originalboardGenerationQualityFactor;
 
         public BoardGenerationQualityFactorDialog(int boardGenerationQualityFactor)
         {

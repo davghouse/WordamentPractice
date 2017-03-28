@@ -64,8 +64,8 @@ namespace Daves.WordamentPractice.Views
             }
         }
 
-        private List<TileView> _tileViewPathBeingBuilt = new List<TileView>();
-        private List<Tile> _tilePathBeingBuilt = new List<Tile>();
+        private readonly List<TileView> _tileViewPathBeingBuilt = new List<TileView>();
+        private readonly List<Tile> _tilePathBeingBuilt = new List<Tile>();
         private bool IsPlayable => _practiceViewModel.IsStarted;
         private bool IsPathBeingBuilt => _tilePathBeingBuilt.Count > 0;
         private Board Board => _practiceViewModel.BoardViewModel.Board;

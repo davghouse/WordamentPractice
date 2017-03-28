@@ -5,11 +5,11 @@ namespace Daves.WordamentPractice.Utilities
 {
     public class UITimer
     {
-        private TimeSpan _interval;
-        private EventHandler _callback;
-        private DispatcherTimer _timer = new DispatcherTimer();
+        private readonly TimeSpan _interval;
+        private readonly EventHandler _callback;
+        private readonly string _format;
+        private readonly DispatcherTimer _timer = new DispatcherTimer();
         private int _intervalCount;
-        private string _format;
 
         public UITimer(TimeSpan interval, EventHandler callback, string format = null)
         {

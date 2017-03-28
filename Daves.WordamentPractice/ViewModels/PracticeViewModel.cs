@@ -48,7 +48,7 @@ namespace Daves.WordamentPractice.ViewModels
             set => Set(ref _isBeingCleared, value);
         }
 
-        private UITimer _timer;
+        private readonly UITimer _timer;
         private void _timer_Tick_UpdateTimerLabel(object sender, EventArgs e) => TimerLabel = _timer.ToString();
         private string _timerLabel = "0:00";
         public string TimerLabel
