@@ -85,7 +85,7 @@ namespace Daves.WordamentPractice.ViewModels
                 {
                     if (i % 10 == 0 && stopwatch.ElapsedMilliseconds > 250)
                     {
-                        progressUpdater($"{100 * i / (double)boardGenerationCount:0.00}% complete...");
+                        progressUpdater($"{100 * i / (double)boardGenerationCount:N0}% complete...");
                     }
 
                     for (int t = 0; t < 16; ++t)
