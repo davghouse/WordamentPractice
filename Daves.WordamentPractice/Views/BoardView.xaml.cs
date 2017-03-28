@@ -1,6 +1,5 @@
 ﻿using Daves.WordamentPractice.Helpers;
 using Daves.WordamentSolver;
-using MoreLinq;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;

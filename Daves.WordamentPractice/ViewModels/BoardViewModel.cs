@@ -1,7 +1,6 @@
-﻿using Daves.WordamentPractice.Properties;
+﻿using Daves.WordamentPractice.Helpers;
+using Daves.WordamentPractice.Properties;
 using Daves.WordamentSolver;
-using GalaSoft.MvvmLight;
-using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

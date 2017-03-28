@@ -1,5 +1,4 @@
 ﻿using Daves.WordamentSolver;
-using GalaSoft.MvvmLight;
 using System;
 
 namespace Daves.WordamentPractice.ViewModels

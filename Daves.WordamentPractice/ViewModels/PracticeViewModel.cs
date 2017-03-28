@@ -1,8 +1,5 @@
 ﻿using Daves.WordamentPractice.Utilities;
 using Daves.WordamentSolver;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.CommandWpf;
-using MoreLinq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,10 +14,10 @@ namespace Daves.WordamentPractice.ViewModels
         {
             _timer = new UITimer(TimeSpan.FromSeconds(1), _timer_Tick_UpdateTimerLabel);
 
-            StartCommand = new RelayCommand(ExecuteStartCommand, CanExecuteStartCommand);
-            PauseCommand = new RelayCommand(ExecutePauseCommand, CanExecutePauseCommand);
-            StopCommand = new RelayCommand(ExecuteStopCommand, CanExecuteStopCommand);
-            ClearCommand = new RelayCommand(ExecuteClearCommand, CanExecuteClearCommand);
+            StartCommand = new RelayCommand(CanExecuteStartCommand, ExecuteStartCommand);
+            PauseCommand = new RelayCommand(CanExecutePauseCommand, ExecutePauseCommand);
+            StopCommand = new RelayCommand(CanExecuteStopCommand, ExecuteStopCommand);
+            ClearCommand = new RelayCommand(CanExecuteClearCommand, ExecuteClearCommand);
 
             foreach (var tileViewModel in BoardViewModel.TileViewModels)
             {
