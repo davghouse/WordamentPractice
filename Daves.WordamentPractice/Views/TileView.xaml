@@ -8,7 +8,7 @@
              xmlns:converters="clr-namespace:Daves.WordamentPractice.Converters"
              mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:TileViewModel}">
   <UserControl.Resources>
-    <converters:IsTileHitTestVisibleConverter x:Key="isTileHitTestVisibleConverter"/>
+    <converters:IsTileHitTestVisibleConverter x:Key="IsTileHitTestVisibleConverter"/>
 
     <Style TargetType="TextBox">
       <Setter Property="BorderThickness" Value="0"/>
@@ -16,7 +16,7 @@
       <Setter Property="Background" Value="{StaticResource OrangeishTileBrush}"/>
       <Setter Property="IsHitTestVisible">
         <Setter.Value>
-          <MultiBinding Converter="{StaticResource isTileHitTestVisibleConverter}">
+          <MultiBinding Converter="{StaticResource IsTileHitTestVisibleConverter}">
             <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}}"
                      Path="DataContext.IsStarted"/>
             <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}}"

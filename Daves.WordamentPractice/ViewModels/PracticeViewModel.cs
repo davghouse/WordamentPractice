@@ -178,6 +178,8 @@ namespace Daves.WordamentPractice.ViewModels
 
             IsStarted = true;
             _timer.Start();
+
+            CommandManager.InvalidateRequerySuggested(); // http://stackoverflow.com/a/14152091
         }
 
         public ICommand PauseCommand { get; }

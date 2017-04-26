@@ -7,7 +7,7 @@
         MouseLeftButtonUp="Window_MouseLeftButtonUp_TrySubmittingPath"
         MouseEnter="Window_MouseEnter_TrySubmittingPath">
   <Window.Background>
-    <ImageBrush ImageSource="..\Resources\WordamentBackground.PNG"/>
+    <ImageBrush ImageSource="/Resources/WordamentBackground.PNG"/>
   </Window.Background>
 
   <Window.Resources>

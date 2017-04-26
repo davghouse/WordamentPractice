@@ -30,7 +30,7 @@ namespace Daves.WordamentPractice.Views
             else textBox.FontSize = 72;
         }
 
-        // Making enter and space simulate a tab press, see http://stackoverflow.com/q/9025278/1676558.
+        // Making enter and space simulate a tab press, see http://stackoverflow.com/q/9025278.
         private void TextBox_PreviewKeyDown_MapKeysToTab(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Space)

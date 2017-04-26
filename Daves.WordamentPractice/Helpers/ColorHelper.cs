@@ -22,13 +22,10 @@ namespace Daves.WordamentPractice.Helpers
             // So for the [ | ] 3 step example, this yields:
             // start + (end - start) * 0/2, start + (end - start) * 1/2, start + (end - start) * 2/2.
             for (int s = 0; s < steps; ++s)
-            {
-                yield return Color.FromArgb(
-                    255,
+                yield return Color.FromRgb(
                     (byte)(start.R + (rDifference * s) / (steps - 1)),
                     (byte)(start.G + (gDifference * s) / (steps - 1)),
                     (byte)(start.B + (bDifference * s) / (steps - 1)));
-            }
         }
     }
 }

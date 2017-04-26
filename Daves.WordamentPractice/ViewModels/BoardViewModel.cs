@@ -111,9 +111,6 @@ namespace Daves.WordamentPractice.ViewModels
                 TileViewModels[t].String = bestTileStrings[t];
                 TileViewModels[t].Points = TileViewModels[t].Points ?? Board.GuessTilePoints(bestTileStrings[t]);
             }
-
-            // http://stackoverflow.com/a/2764022/1676558
-            CommandManager.InvalidateRequerySuggested();
         }
 
         public bool IsEmpty
