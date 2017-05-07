@@ -4,13 +4,13 @@ namespace Daves.WordamentPractice.Views
 {
     public partial class BoardGenerationQualityFactorDialog : Window
     {
-        private readonly int _originalboardGenerationQualityFactor;
+        private readonly int _originalBoardGenerationQualityFactor;
 
         public BoardGenerationQualityFactorDialog(int boardGenerationQualityFactor)
         {
             InitializeComponent();
 
-            _originalboardGenerationQualityFactor = boardGenerationQualityFactor;
+            _originalBoardGenerationQualityFactor = boardGenerationQualityFactor;
             BoardGenerationQualityFactorTextBox.Text = boardGenerationQualityFactor.ToString();
         }
 
@@ -23,7 +23,7 @@ namespace Daves.WordamentPractice.Views
             {
                 if (int.TryParse(BoardGenerationQualityFactorTextBox.Text, out int boardGenerationQualityFactor))
                     return boardGenerationQualityFactor;
-                return _originalboardGenerationQualityFactor;
+                return _originalBoardGenerationQualityFactor;
             }
         }
     }

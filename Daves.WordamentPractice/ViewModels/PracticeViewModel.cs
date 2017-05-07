@@ -72,7 +72,7 @@ namespace Daves.WordamentPractice.ViewModels
             {
                 if (Set(ref _solution, value))
                 {
-                    SolutionWords = _solution.Words;
+                    SolutionWords = Solution.Words;
                 }
             }
         }
@@ -92,9 +92,9 @@ namespace Daves.WordamentPractice.ViewModels
             get => _selectedWordSorter;
             set
             {
-                if (Set(ref _selectedWordSorter, value) && _selectedWordSorter != null)
+                if (Set(ref _selectedWordSorter, value) && SelectedWordSorter != null)
                 {
-                    Solution.SortWords(_selectedWordSorter);
+                    Solution.SortWords(SelectedWordSorter);
                     SolutionWords = Solution.Words.ToArray();
                 }
             }
@@ -108,8 +108,8 @@ namespace Daves.WordamentPractice.ViewModels
             {
                 if (Set(ref _selectedWord, value))
                 {
-                    WordLabel = _selectedWord?.String;
-                    BoardViewModel.HighlightedPath = _selectedWord?.BestPath;
+                    WordLabel = SelectedWord?.String;
+                    BoardViewModel.HighlightedPath = SelectedWord?.BestPath;
                 }
             }
         }
@@ -125,8 +125,8 @@ namespace Daves.WordamentPractice.ViewModels
             {
                 if (Set(ref _selectedFoundWordPath, value))
                 {
-                    WordLabel = _selectedFoundWordPath?.Word.String;
-                    BoardViewModel.HighlightedPath = _selectedFoundWordPath?.Path;
+                    WordLabel = SelectedFoundWordPath?.Word.String;
+                    BoardViewModel.HighlightedPath = SelectedFoundWordPath?.Path;
                 }
             }
         }

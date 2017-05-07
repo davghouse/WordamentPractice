@@ -28,7 +28,7 @@ namespace Daves.WordamentPractice.ViewModels
                     if (Board.GuessTilePoints(previousString) == Points)
                     {
                         _shouldRaiseTileUpdated = false;
-                        Points = Board.GuessTilePoints(_string);
+                        Points = Board.GuessTilePoints(String);
                         _shouldRaiseTileUpdated = true;
                     }
 
