@@ -32,7 +32,7 @@ namespace Daves.WordamentPractice.Views
         {
             var dialog = new SaveFileDialog
             {
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+                Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
             };
 
             if (dialog.ShowDialog() == true)
@@ -45,7 +45,7 @@ namespace Daves.WordamentPractice.Views
         {
             var dialog = new OpenFileDialog
             {
-                Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*"
+                Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*"
             };
 
             if (dialog.ShowDialog() == true)
@@ -56,7 +56,10 @@ namespace Daves.WordamentPractice.Views
 
         private void BoardGenerationQualityFactorMenuItem_Click_ShowDialog(object sender, RoutedEventArgs e)
         {
-            var dialog = new BoardGenerationQualityFactorDialog(_practiceViewModel.BoardViewModel.BoardGenerationQualityFactor);
+            var dialog = new BoardGenerationQualityFactorDialog(_practiceViewModel.BoardViewModel.BoardGenerationQualityFactor)
+            {
+                Owner = this
+            };
 
             if (dialog.ShowDialog() == true)
             {
