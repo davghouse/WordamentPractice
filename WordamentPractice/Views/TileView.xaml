@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="WordamentPractice.Views.TileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:views="clr-namespace:WordamentPractice.Views"
+             xmlns:viewModels="clr-namespace:WordamentPractice.ViewModels"
+             xmlns:converters="clr-namespace:WordamentPractice.Converters"
+             mc:Ignorable="d" d:DataContext="{d:DesignInstance viewModels:TileViewModel}">
+  <UserControl.Resources>
+    <converters:IsTileHitTestVisibleConverter x:Key="IsTileHitTestVisibleConverter"/>
+
+    <Style TargetType="TextBox">
+      <Setter Property="BorderThickness" Value="0"/>
+      <Setter Property="Foreground" Value="White"/>
+      <Setter Property="Background" Value="{StaticResource OrangeishTileBrush}"/>
+      <Setter Property="IsHitTestVisible">
+        <Setter.Value>
+          <MultiBinding Converter="{StaticResource IsTileHitTestVisibleConverter}">
+            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}}"
+                     Path="DataContext.IsStarted"/>
+            <Binding RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type views:PracticeView}}"
+                     Path="DataContext.IsBeingPopulated"/>
+          </MultiBinding>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+    <Style TargetType="Border">
+      <Setter Property="Background" Value="{StaticResource OrangeishTileBrush}"/>
+    </Style>
+  </UserControl.Resources>
+
+  <Border Name="SquareBorder" Margin="5">
+    <Border Name="RoundBorder" CornerRadius="50" Margin=".5"
+            MouseEnter="RoundBorder_MouseEnter_RaiseMouseEnteredInterior">
+      <Grid>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="*"/>
+          <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="*"/>
+          <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Would like to wrap in a Viewbox here for autoscaling to avoid the TextChanged handler,
+          but then the selectable area of the textbox shrinks, making clicking it difficult. -->
+        <TextBox Name="StringTextBox" Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="2"
+                 Text="{Binding String}" TextChanged="Tile_TextChanged_ResizeFontToFit"
+                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                 FontSize="72" CharacterCasing="Upper"
+                 PreviewKeyDown="TextBox_PreviewKeyDown_MapKeysToTab"/>
+
+        <TextBox Name="PointsTextBox" Grid.Row="0" Grid.Column="0"
+                 Text="{Binding Points}"
+                 FontSize="16" IsTabStop="False"
+                 PreviewKeyDown="TextBox_PreviewKeyDown_MapKeysToTab"/>
+      </Grid>
+    </Border>
+  </Border>
+</UserControl>
