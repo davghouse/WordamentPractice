@@ -2,11 +2,11 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("WordamentPractice")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Wordament Practice")]
+[assembly: AssemblyDescription("Wordament Practice")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("WordamentPractice")]
+[assembly: AssemblyProduct("Wordament Practice")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
